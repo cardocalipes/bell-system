@@ -71,7 +71,7 @@ body {
             margin-bottom: 10px;
         }
         .menu-label {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
         }
 </style>
