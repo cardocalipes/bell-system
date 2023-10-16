@@ -4,7 +4,7 @@
             <img src="~/public/images/Bell-System-Logo.png" alt="BELLHUB Logo" width="300" height="200">
         </div>
         <div class="login-form">
-            <h2>Login</h2>
+            <h2>LOGIN</h2>
             <form action="your-login-action.php" method="POST">
                 <input type="text" class="form-input" name="name" placeholder="Name" required>
                 <input type="password" class="form-input" name="access_code" placeholder="Access Code" required>
