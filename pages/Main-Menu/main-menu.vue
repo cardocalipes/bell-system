@@ -22,12 +22,12 @@
 <script setup>
 function goToSchedulePage() {
             // Redirect to the "Pick Schedule" page
-            window.location.href = "/Main-Menu/Pick-Schedule/pick-sched";
+            //window.location.href = "/Main-Menu/Pick-Schedule/pick-sched";
         }
 
         function goToCustomSchedulePage() {
             // Redirect to the "Custom Schedule" page
-            window.location.href = "/Main-Menu/Pick-Schedule/pick-sched";
+            //window.location.href = "/Main-Menu/Pick-Schedule/pick-sched";
         }
 
         function goToHistoryPage() {

@@ -5,12 +5,12 @@
     </div>
     <div class="container">
         <div class="box" onclick="goToSavedSchedulesPage()">
-            <span class="box-icon">&#x1F4C2;</span>
-            <div class="box-label">Saved Schedules</div>
+            <span class="box-icon"><NuxtLink to = "/Main-Menu/Custom-Schedule/Saved-Sched/saved-sched">&#x1F4C2;</NuxtLink></span>
+            <div class="box-label"><NuxtLink to = "/Main-Menu/Custom-Schedule/Saved-Sched/saved-sched">Saved Schedules</NuxtLink></div>
         </div>
         <div class="box" onclick="goToAddCustomPage()">
-            <span class="box-icon">&#x2795;</span>
-            <div class="box-label">Add Custom</div>
+            <span class="box-icon"><NuxtLink to = "/Main-Menu/Custom-Schedule/Add-Custom/add-custom">&#x2795;</NuxtLink></span>
+            <div class="box-label"><NuxtLink to = "/Main-Menu/Custom-Schedule/Add-Custom/add-custom">Add Custom</NuxtLink></div>
         </div>
     </div>
 </template>
@@ -18,7 +18,7 @@
 <script setup>
 function goToSavedSchedulesPage() {
             // Redirect to the "Saved Schedules" page
-            window.location.href = "saved-schedules.html";
+            //window.location.href = "/Main-Menu/Pick-Schedule/pick-sched";
         }
 
         function goToAddCustomPage() {
