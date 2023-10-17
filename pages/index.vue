@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="logo">
-            <img src="~/public/images/logo.png" alt="BELLHUB Logo" width="300" height="200">
+            <img src="~/public/images/logo.png" alt="BELLHUB Logo" width="300" height="300">
         </div>
         <div class="login-form">
             <h2>LOGIN</h2>
