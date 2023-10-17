@@ -26,7 +26,7 @@ body {
         }
         .container {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 30px;
         }
         .logo {
             margin-bottom: 20px;
@@ -41,7 +41,7 @@ body {
         .form-input {
             width: 50%;
             padding: 10px 20px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 3px;
         }
@@ -54,6 +54,7 @@ body {
             cursor: pointer;
             display: block;
             margin: 0 auto;
+            text-decoration: none;
         }
         .signin-btn:hover {
             background-color: #0056b3;
