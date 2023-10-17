@@ -1,10 +1,10 @@
 <template>
     <div class="container">
         <div class="logo">
-            <img src="~/public/images/logo.png" alt="BELLHUB Logo" width="250" height="250">
+            <img src="~/public/images/logo.png" alt="BELLHUB Logo" width="200" height="200">
+            <h2>BELLHUB</h2>
         </div>
         <div class="login-form">
-            <h2>LOGIN</h2>
             <form action="your-login-action.php" method="POST">
                 <input type="text" class="form-input" name="name" placeholder="Name" required>
                 <input type="password" class="form-input" name="access_code" placeholder="Access Code" required>
@@ -22,24 +22,25 @@
 <style scoped>
 body {
             font-family: Arial, sans-serif;
-            background-color: #ffffff;
+            background-color: #3d87dc;
         }
         .container {
             text-align: center;
             margin-top: 30px;
         }
         .logo {
-            margin-bottom: 20px;
+            margin-bottom: 5px;
         }
         .login-form {
             background-color: #b7d9ff;
-            width: 50%;
-            padding: 20px 10px;
+            width: 30%;
+            padding: 50px 5px;
             border-radius: 5px;
             margin: 0 auto;
         }
         .form-input {
             width: 50%;
+            margin-top: 5px;
             padding: 10px 20px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
