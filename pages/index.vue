@@ -27,6 +27,7 @@ body {
         .container {
             text-align: center;
             margin-top: 30px;
+            background-image: url('~/public/images/bg.png');
         }
         .logo {
             margin-bottom: 5px;
