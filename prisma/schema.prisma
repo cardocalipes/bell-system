@@ -33,13 +33,3 @@ model schedule3 {
   timer       DateTime? @db.Time(0)
   real_time   DateTime? @db.Time(0)
 }
-
-model saved_chedule {
-  id        Int      @id @default(autoincrement())
-  sched_num Int
-  sched_name String
-  start_time DateTime
-  duration  Int
-  increment  Int
-  breaktime Boolean
-}
