@@ -1,9 +1,7 @@
 <template>
     <li class="back-button"><NuxtLink to ="/Main-Menu/main-menu">Back</NuxtLink></li>
-    <div class="header">
-        PICK SCHEDULE
-    </div>
     <div class="container">
+        <h2 class="header">PICK SCHEDULE</h2>
         <div class="box" onclick="selectSchedule(1)">
             <h3>Schedule 1</h3>
         </div>
@@ -24,45 +22,44 @@
 body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-            text-align: center;
-            padding: 20px;
-            background-color: #007bff;
-            color: #fff;
-            font-size: 24px;
         }
         .back-button {
             position: absolute;
             top: 10px;
             left: 10px;
-            background-color: #007bff;
             color: #fff;
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
             cursor: pointer;
         }
+        .header{
+            text-align: center;
+            margin: 0 auto;
+            margin: 20px;
+            padding: 20px;
+            height: 50px;
+        }
         .container {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            height: 100vh;
+            height: 97.3vh;
+            background-image: url('~/public/images/bg.png');
+            background-size: 1260px 600px;
         }
         .box {
             text-align: center;
-            padding: 20px;
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             transition: transform 0.2s;
             flex: 1;
-            margin: 10px;
+            margin: 20px;
+            padding: 50px;
         }
         .box:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 </style>
