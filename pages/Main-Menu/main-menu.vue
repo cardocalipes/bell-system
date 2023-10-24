@@ -10,7 +10,7 @@
                 <div class="menu-label">History</div>
             </div>
         </div>
-        <div class="bottom">
+        <div>
             <div class="menu-item" onclick="goToCustomSchedulePage()">
                 <span class="menu-icon"><NuxtLink to = "/Main-Menu/Custom-Schedule/custom-sched">&#x1F4C3;</NuxtLink></span>
                 <div class="menu-label"><NuxtLink to = "/Main-Menu/Custom-Schedule/custom-sched">Custom Schedule</NuxtLink></div>
@@ -61,7 +61,7 @@ body {
         }
         .menu-item {
             text-align: center;
-            height: 150px;
+            height: 145px;
             width: 250px;
             margin: 0 auto;
             margin: 45px;
@@ -81,5 +81,6 @@ body {
         .menu-label {
             font-weight: bold;
             font: caption;
+            font-size: 20px;
         }
 </style>
