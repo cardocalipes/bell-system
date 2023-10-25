@@ -3,20 +3,21 @@
   "type": "module",
   "private": true,
   "scripts": {
-      "build": "nuxt build",
-      "dev": "nuxt dev",
-      "generate": "nuxt generate",
-      "preview": "nuxt preview",
-      "postinstall": "nuxt prepare"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
-"devDependencies": {
-  "@types/node": "^20.8.7",
-  "nodemon": "^3.0.1",
-  "prisma": "^5.4.2",
-  "ts-node": "^10.9.1",
-  "typescript": "^5.2.2"
-},
-"dependencies": {
-  "@prisma/client": "^5.4.2"
-}
+  "devDependencies": {
+    "@types/node": "^20.8.7",
+    "nodemon": "^3.0.1",
+    "prisma": "^5.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.4.2",
+    "nuxt": "^3.8.0"
+  }
 }
