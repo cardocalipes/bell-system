@@ -14,10 +14,10 @@ model user_data {
 }
 
 model schedule1 {
+  id1         Int       @id @default(autoincrement())
   ring_number Int?
   timer       DateTime? @db.Time(0)
   real_time   DateTime? @db.Time(0)
-  id1         Int       @id @default(autoincrement())
 }
 
 model schedule2 {
@@ -34,14 +34,7 @@ model schedule3 {
   real_time   DateTime? @db.Time(0)
 }
 
-model history {
-  ring_number Int      @id @unique(map: "History_ring_number_key")
-  date        DateTime
-  time        DateTime
-  type        String
-}
-
-model saved_schedule {
+model schedule {
   id         Int      @id @default(autoincrement())
   Sched_num  String
   sched_name String
