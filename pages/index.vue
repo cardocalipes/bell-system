@@ -1,23 +1,57 @@
 <template>
-    <div class="container">
-        <div class="logo">
-            <img src="~/public/images/logo-circle_1.png" alt="BELLHUB Logo" width="200" height="200">
-            <h2>BELLHUB</h2>
-        </div>
-        <div class="login-form">
-            <form action="your-login-action.php" method="POST">
-                <input type="text" class="form-input" name="name" placeholder="Name" required>
-                <input type="password" class="form-input" name="access_code" placeholder="Access Code" required>
-                <router-link :to="{ path: '/Main-Menu/main-menu' }">
-                <button type="submit" class="signin-btn">Sign In</button></router-link>
-            </form>
-        </div>
+  <div class="container">
+    <div class="logo">
+      <img src="~/public/images/logo-circle_1.png" alt="BELLHUB Logo" width="200" height="200" />
+      <h2>BELLHUB</h2>
     </div>
+    <div class="login-form">
+      <label for="username">Username:</label>
+      <input v-model="username" type="text" id="username" />
+
+      <label for="accessCode">Access Code:</label>
+      <input v-model="accessCode" type="password" id="accessCode" />
+
+      <button @click="login">Login</button>
+    </div>
+  </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import { useHttp } from '@nuxt/http';
 
+const username = ref ();
+const accessCode = ref ();
+
+const login = async () => {
+  try {
+    console.log('Sending credentials:', { username: username.value, accessCode: accessCode.value });
+
+    const response = await useFetch('/api/login', {
+      Username: username.value,
+      Access_Code: accessCode.value,
+    });
+
+    console.log('Response from server:', response.data);
+
+    if (response.data.isValid) {
+      // Redirect to the Main-Menu
+      this.$router.push('/Main-Menu');
+    } else {
+      // Display an error message
+      alert('Invalid username or access code');
+    }
+  } catch (error) {
+    console.error('Error during login:', error);
+    alert('An error occurred during login. Please try again.');
+  }
+};
 </script>
+
+<style scoped>
+/* Your styling remains unchanged */
+</style>
+
 
 <style scoped>
 body {
