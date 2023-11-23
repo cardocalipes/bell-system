@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
     const body = await readBody(event);
     console.log(body);
 
-    const userData = await prisma.user_data.findMany({
+    const smthn = await prisma.user_data.findMany({
     });
     console.log(smthn);
     

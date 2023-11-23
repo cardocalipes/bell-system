@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.4.2",
+    "dayjs": "^1.11.10",
     "nuxt": "^3.8.0"
   }
 }

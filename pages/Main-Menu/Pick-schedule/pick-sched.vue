@@ -3,7 +3,7 @@
     <div class="container">
         <h2 class="header">PICK SCHEDULE</h2>
         <div class="box" onclick="selectSchedule(1)">
-            <h3>Schedule 1</h3>
+            <router-link :to="{ path: '/Main-Menu/Pick-Schedule/Schedules/sched1' }"><h3>Schedule 1</h3><span class="menu-icon">&#x1F4C5;</span></router-link>       
         </div>
         <div class="box" onclick="selectSchedule(2)">
             <h3>Schedule 2</h3>
