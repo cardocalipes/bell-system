@@ -1,6 +1,6 @@
-// nuxt.config.js
 export default {
-  // ... other configurations
-  modules: ['@nuxt/http'],
-  // ... other configurations
+  server: {
+    port: process.env.PORT || 3000,
+    host: '0.0.0.0',
+  }
 }
