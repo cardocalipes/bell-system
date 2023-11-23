@@ -5,11 +5,11 @@
       <h2>BELLHUB</h2>
     </div>
     <div class="login-form">
-      <label for="username">Username:</label>
-      <input v-model="username" type="text" id="username" />
+      <label class="label" for="username">Username: </label>
+      <input class="un" v-model="username" type="text" id="username" />
 
-      <label for="accessCode">Access Code:</label>
-      <input v-model="accessCode" type="password" id="accessCode" />
+      <label class="label" for="accessCode">Access Code: </label>
+      <input class="ac" v-model="accessCode" type="password" id="accessCode" />
 
       <button @click="login()">Login</button>
     </div>
@@ -40,13 +40,26 @@ console.log(authRequest);
 <style scoped>
 body {
             background-color: #3d87dc;
+      }
+        .label {
+            color: #07053a;
+            font: caption;
+            font-size: 13px;
+        }
+        .un {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .ac {
+            margin-bottom: 15px;
         }
         .container {
             text-align: center;
-            padding: 17px 80px;
+            padding: 80px;
             background-image: url('~/public/images/bg.png');
-            background-size: cover;
+            background-size: 100%;
             background-repeat: no-repeat;
+            height: 543px;
         }
         .logo {
             color: #07053a;
@@ -55,8 +68,8 @@ body {
         }
         .login-form {
             background-color: #b7d9ff;
-            width: 30%;
-            padding: 30px 5px;
+            width: 25%;
+            padding: 25px 15px;
             border-radius: 5px;
             margin: 0 auto;
         }
@@ -65,7 +78,7 @@ body {
             margin-top: 5px;
             padding: 10px 20px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #000000;
             border-radius: 3px;
         }
         .signin-btn {
