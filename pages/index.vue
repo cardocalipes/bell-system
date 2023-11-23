@@ -11,14 +11,30 @@
       <label for="accessCode">Access Code:</label>
       <input v-model="accessCode" type="password" id="accessCode" />
 
-      <button @click="login">Login</button>
+      <button @click="login()">Login</button>
     </div>
   </div>
 </template>
 
 <script setup>
+const username = ref();
+const accessCode = ref();
+
+async function login() {
+  const {data: { value: authRequest } } = await useFetch("/api/login", {
+  method: "POST",
+  body: {
+    username: username.value,
+    accessCode: accessCode.value
+  }
+})
+
+console.log(authRequest);
+}
+
 
 </script>
+
 
 <style scoped>
 body {
