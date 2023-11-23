@@ -8,7 +8,7 @@
       <label class="label" for="username">Username: </label>
       <input class="un" v-model="username" type="text" id="username" />
 
-      <label class="label" for="accessCode">Access Code: </label>
+      <label class="label" for="accessCode"> <br> Access Code: </label>
       <input class="ac" v-model="accessCode" type="password" id="accessCode" />
 
       <button @click="login()">Login</button>

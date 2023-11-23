@@ -8,12 +8,12 @@
 
         <div class="form-group">
             <label class="label" for="start-time">Start Time:</label>
-            <input class="input" type="time" id="start-time">
+            <input class="input" v-model="startTime" type="time" id="start-time">
         </div>
 
         <div class="form-group">
             <label class="label" for="duration">Duration:</label>
-            <input class="input" type="time" id="duration">
+            <input class="input" v-model="duration" type="time" id="duration">
         </div>
 
         <div class="form-group">
@@ -25,7 +25,7 @@
         </div>
 
         <div class="buttons">
-            <button>Apply</button>
+            <button @click="apply()">Apply</button>
             <button>Cancel</button>
         </div>
     </div>
@@ -33,7 +33,20 @@
 </template>
 
 <script setup>
+const startTime = ref();
+const duration = ref();
 
+async function apply(){
+    const {data: { value: applySched}} = await useFetch ("/api/apply", {
+        method: "POST",
+        body: {
+            startTime: startTime.value,
+            duration: duration.value
+        }
+       
+})
+        console.log(applySched);
+}
 </script>
 
 <style scoped>
