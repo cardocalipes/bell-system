@@ -28,7 +28,8 @@ body {
             text-align: center;
             padding: 17px 80px;
             background-image: url('~/public/images/bg.png');
-            background-size: 1260px 600px;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
         .logo {
             color: #07053a;
