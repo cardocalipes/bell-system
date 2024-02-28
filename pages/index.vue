@@ -45,6 +45,7 @@ body {
             color: #07053a;
             font: caption;
             font-size: 13px;
+            font-weight: bold;
         }
         .un {
             margin-top: 20px;
@@ -55,11 +56,12 @@ body {
         }
         .container {
             text-align: center;
-            padding: 80px;
+            padding: 120px;
             background-image: url('~/public/images/bg.png');
             background-size: 100%;
             background-repeat: no-repeat;
-            height: 543px;
+            height: 608px;
+            margin: 0 auto;
         }
         .logo {
             color: #07053a;
@@ -68,8 +70,9 @@ body {
         }
         .login-form {
             background-color: #b7d9ff;
-            width: 25%;
-            padding: 25px 15px;
+            width: 23%;
+            height: 20%;
+            padding: 25px 100px;
             border-radius: 5px;
             margin: 0 auto;
         }

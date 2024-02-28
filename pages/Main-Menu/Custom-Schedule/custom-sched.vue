@@ -1,7 +1,7 @@
 <template>
     <li class="back-button"><NuxtLink to ="/Main-Menu/main-menu">Back</NuxtLink></li>
     <div class="container">
-        <h2>Custom</h2>
+        <div class="hc"><h1 class="header">Custom</h1></div>
         <div class="box" onclick="goToSavedSchedulesPage()">
             <span class="box-icon"><NuxtLink to = "/Main-Menu/Custom-Schedule/Saved-Sched/saved-sched">&#x1F4C2;</NuxtLink></span>
             <div class="box-label"><NuxtLink to = "/Main-Menu/Custom-Schedule/Saved-Sched/saved-sched">Saved Schedules</NuxtLink></div>
@@ -32,6 +32,12 @@ body {
             margin: 0;
             padding: 0;
         }
+        .header{
+            font: caption;
+            font-size: 50px;
+            font-weight: bold;
+            color: #07053a;
+        }
         .back-button {
             position: absolute;
             top: 10px;
@@ -48,30 +54,37 @@ body {
             justify-content: space-around;
             align-items: center;
             height: 97.25vh;
-
+            height: 98vh;
+            width: 98.9vw;
+            background-repeat: no-repeat;
             background-image: url('~/public/images/bg.png');
-            background-size: 1260px 600px;
+            background-size: 1530px 850px;
+
         }
         .box {
             text-align: center;
-            padding: 20px;
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             transition: transform 0.2s;
             flex: 1;
-            margin: 10px;
+            margin: 180px;
+            padding: 50px 0px;
+            font: caption;
+            font-size: 15px;
         }
         .box:hover {
             transform: scale(1.05);
         }
         .box-icon {
-            font-size: 48px;
-            margin-bottom: 10px;
+            font-size: 50px;
         }
         .box-label {
             font-size: 18px;
             font-weight: bold;
+        }
+        .hc{
+            background-color: #b7d9ff;
         }
 </style>

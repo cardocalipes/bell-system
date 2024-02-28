@@ -1,16 +1,16 @@
 <template>
     <li class="back-button"><NuxtLink to ="/Main-Menu/main-menu">Back</NuxtLink></li>
     <div class="container">
-        <h2 class="header">PICK SCHEDULE</h2>
-        <div class="box" onclick="selectSchedule(1)">
-            <router-link :to="{ path: '/Main-Menu/Pick-Schedule/Schedules/sched1' }"><h3>Schedule 1</h3><span class="menu-icon">&#x1F4C5;</span></router-link>       
-        </div>
-        <div class="box" onclick="selectSchedule(2)">
-            <router-link :to="{ path: '/Main-Menu/Pick-Schedule/Schedules/sched2' }"><h3>Schedule 2</h3><span class="menu-icon">&#x1F4C5;</span></router-link>       
-        </div>
-        <div class="box" onclick="selectSchedule(3)">
-            <router-link :to="{ path: '/Main-Menu/Pick-Schedule/Schedules/sched3' }"><h3>Schedule 3</h3><span class="menu-icon">&#x1F4C5;</span></router-link>       
-        </div>
+        <div class="hc"><h1 class="header">PICK SCHEDULE</h1></div>
+            <div class="box" onclick="selectSchedule(1)">
+             <router-link :to="{ path: '/Main-Menu/Pick-Schedule/Schedules/sched1' }"><h3>Schedule 1</h3><span class="menu-icon">&#x1F4C5;</span></router-link>       
+            </div>
+            <div class="box" onclick="selectSchedule(2)">
+                <router-link :to="{ path: '/Main-Menu/Pick-Schedule/Schedules/sched2' }"><h3>Schedule 2</h3><span class="menu-icon">&#x1F4C5;</span></router-link>       
+            </div>
+            <div class="box" onclick="selectSchedule(3)">
+                <router-link :to="{ path: '/Main-Menu/Pick-Schedule/Schedules/sched3' }"><h3>Schedule 3</h3><span class="menu-icon">&#x1F4C5;</span></router-link>       
+            </div>
     </div>
 </template>
 
@@ -36,17 +36,20 @@ body {
         .header{
             text-align: center;
             margin: 0 auto;
-            margin: 20px;
-            padding: 20px;
-            height: 50px;
+            font: caption;
+            font-size: 50px;
+            font-weight: bold;
+            color: #07053a;
         }
         .container {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            height: 97.3vh;
+            height: 98vh;
+            width: 98.9vw;
             background-image: url('~/public/images/bg.png');
-            background-size: 1260px 600px;
+            background-size: 1530px 850px;
+            background-repeat: no-repeat;
         }
         .box {
             text-align: center;
@@ -56,10 +59,18 @@ body {
             cursor: pointer;
             transition: transform 0.2s;
             flex: 1;
-            margin: 20px;
-            padding: 50px;
+            margin: 10px;
+            padding: 40px 0;
+            font: caption;
+            font-size: 15px;
         }
         .box:hover {
             transform: scale(1.05);
+        }
+        .menu-icon{
+            font-size: 50px;
+        }
+        .hc{
+            background-color: #b7d9ff;
         }
 </style>
