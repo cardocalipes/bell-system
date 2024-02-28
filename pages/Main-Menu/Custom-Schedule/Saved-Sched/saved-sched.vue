@@ -1,4 +1,5 @@
 <template>
+    <div class="container">
     <div class="header">
         <h1>SAVED SCHEDULES</h1>
     </div>
@@ -18,6 +19,7 @@
             <button onclick="applyClickedSchedule()">Apply</button>
             <button>Edit</button>
         </div>
+    </div>
     </div>
 </template>
 
@@ -51,11 +53,20 @@
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
         }
+        .container{
+            background-repeat: no-repeat;
+            background-image: url('~/public/images/bg.png');
+            height: 98vh;
+            background-size: 1530px 850px;
+        }
         .header {
             text-align: center;
             padding: 10px;
-            background-color: #333;
-            color: #fff;
+            background-color: none;
+            font: caption;
+            font-weight: bold;
+            font-size: 25px;
+            color: #07053a;
         }
         .back-button {
             position: absolute;
@@ -63,10 +74,12 @@
             left: 10px;
         }
         .schedule-container {
-            width: 80%;
+            align-items: center;
+            width: 90%;
             margin: 0 auto;
-            background-color: #ffffff;
-            padding: 20px;
+            background-color: #b7d9ff;
+            margin: 25px;
+            padding: 100px 50px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }

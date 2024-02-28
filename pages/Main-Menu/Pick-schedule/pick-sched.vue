@@ -1,7 +1,9 @@
 <template>
-    <li class="back-button"><NuxtLink to ="/Main-Menu/main-menu">Back</NuxtLink></li>
     <div class="container">
-        <div class="hc"><h1 class="header">PICK SCHEDULE</h1></div>
+        <div class="hc">
+            <li class="back-button"><NuxtLink to ="/Main-Menu/main-menu">Back</NuxtLink></li>
+            <h1 class="header">PICK SCHEDULE</h1>
+        </div>
             <div class="box" onclick="selectSchedule(1)">
              <router-link :to="{ path: '/Main-Menu/Pick-Schedule/Schedules/sched1' }"><h3>Schedule 1</h3><span class="menu-icon">&#x1F4C5;</span></router-link>       
             </div>
@@ -59,7 +61,7 @@ body {
             cursor: pointer;
             transition: transform 0.2s;
             flex: 1;
-            margin: 10px;
+            margin: 20px;
             padding: 40px 0;
             font: caption;
             font-size: 15px;

@@ -1,7 +1,9 @@
 <template>
-    <li class="back-button"><NuxtLink to ="/Main-Menu/main-menu">Back</NuxtLink></li>
     <div class="container">
-        <div class="hc"><h1 class="header">Custom</h1></div>
+        <div class="hc">
+            <h1 class="header">Custom</h1>
+            <li class="back-button"><NuxtLink to ="/Main-Menu/main-menu">Back</NuxtLink></li>
+        </div>
         <div class="box" onclick="goToSavedSchedulesPage()">
             <span class="box-icon"><NuxtLink to = "/Main-Menu/Custom-Schedule/Saved-Sched/saved-sched">&#x1F4C2;</NuxtLink></span>
             <div class="box-label"><NuxtLink to = "/Main-Menu/Custom-Schedule/Saved-Sched/saved-sched">Saved Schedules</NuxtLink></div>
@@ -53,7 +55,6 @@ body {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            height: 97.25vh;
             height: 98vh;
             width: 98.9vw;
             background-repeat: no-repeat;
