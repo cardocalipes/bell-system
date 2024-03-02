@@ -16,10 +16,11 @@ import { useIntervalFn } from '@vueuse/core' // VueUse helper, install it : npm 
 
 const { data , refresh } = await useAsyncData('sensor', async () => {
   const [sensor1, sensor2, sensor3, sensor4] = await Promise.all([
-    $fetch('http://192.168.0.8/sensor1'),
+    //setup sensor1 ip address first otherwise it will come out as null
+    $fetch('http://192.168.0.65/sensor1'),
     $fetch('http://192.168.0.65/sensor2'),
-    $fetch('http://192.168.0.201/sensor3'),
-    $fetch('http://192.168.0.216/sensor4')
+    $fetch('http://192.168.0.65/sensor3'),
+    $fetch('http://192.168.0.65/sensor4')
   ])
 
   return { sensor1, sensor2, sensor3, sensor4 }
@@ -36,7 +37,7 @@ useIntervalFn(() => {
                     duration: "15"
                 }
             })
-    } 
+    } //provide additional case for fire sensro
     else {
         useFetch('http://192.168.0.65/setAlarm', {
                 method: 'post',
