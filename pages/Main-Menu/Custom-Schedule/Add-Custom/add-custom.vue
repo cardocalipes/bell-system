@@ -2,7 +2,7 @@
     <body>
     <div class="container">
         <div class="header">
-            <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">&#8592; Back</NuxtLink></li>
+            <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
             <div class="schedule-name">Schedule Name</div>
         </div>
 

@@ -1,25 +1,25 @@
 <template>
     <div class="container">
-    <div class="header">
-        <h1>SAVED SCHEDULES</h1>
-    </div>
-    <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">&#8592; Back</NuxtLink></li>
-    <div class="schedule-container">
-        <div class="schedule-column" onclick="applySchedule(1)">Schedule Name 1</div>
-        <div class="schedule-column" onclick="applySchedule(2)">Schedule Name 2</div>
-        <div class="schedule-column" onclick="applySchedule(3)">Schedule Name 3</div>
-        <div class="schedule-column" onclick="applySchedule(4)">Schedule Name 4</div>
-        <div class="schedule-column" onclick="applySchedule(5)">Schedule Name 5</div>
-        <div class="schedule-column" onclick="applySchedule(6)">Schedule Name 6</div>
-        <div class="schedule-column" onclick="applySchedule(7)">Schedule Name 7</div>
-        <div class="schedule-column" onclick="applySchedule(8)">Schedule Name 8</div>
-        <div class="schedule-column" onclick="applySchedule(9)">Schedule Name 9</div>
-        <div class="schedule-column" onclick="applySchedule(10)">Schedule Name 10</div>
-        <div class="buttons">
-            <button onclick="applyClickedSchedule()">Apply</button>
-            <button>Edit</button>
+        <div class="header">
+            <h1>SAVED SCHEDULES</h1>
         </div>
-    </div>
+        <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
+        <div class="schedule-container">
+            <div class="schedule-column" onclick="applySchedule(1)">Schedule Name 1</div>
+            <div class="schedule-column" onclick="applySchedule(2)">Schedule Name 2</div>
+            <div class="schedule-column" onclick="applySchedule(3)">Schedule Name 3</div>
+            <div class="schedule-column" onclick="applySchedule(4)">Schedule Name 4</div>
+            <div class="schedule-column" onclick="applySchedule(5)">Schedule Name 5</div>
+            <div class="schedule-column" onclick="applySchedule(6)">Schedule Name 6</div>
+            <div class="schedule-column" onclick="applySchedule(7)">Schedule Name 7</div>
+            <div class="schedule-column" onclick="applySchedule(8)">Schedule Name 8</div>
+            <div class="schedule-column" onclick="applySchedule(9)">Schedule Name 9</div>
+            <div class="schedule-column" onclick="applySchedule(10)">Schedule Name 10</div>
+            <div class="buttons">
+                <button onclick="applyClickedSchedule()">Apply</button>
+                <button>Edit</button>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -61,7 +61,7 @@
         }
         .header {
             text-align: center;
-            padding: 10px;
+            padding: 27px 0 0 0;
             background-color: none;
             font: caption;
             font-weight: bold;
@@ -72,6 +72,11 @@
             position: absolute;
             top: 10px;
             left: 10px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
         }
         .schedule-container {
             align-items: center;
