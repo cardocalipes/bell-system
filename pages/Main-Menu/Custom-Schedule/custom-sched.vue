@@ -71,8 +71,8 @@ body {
             cursor: pointer;
             transition: transform 0.2s;
             flex: 1;
-            padding: 20px;
-            margin: 20px 300px 0 300px;
+            padding: 40px 0;
+            margin: 30px 200px 50px 200px;
             font: caption;
             font-size: 15px;
         }
@@ -83,7 +83,7 @@ body {
             transform: scale(1.05);
         }
         .box-icon {
-            font-size: 50px;
+            font-size: 80px;
         }
         .box-label {
             font-size: 18px;

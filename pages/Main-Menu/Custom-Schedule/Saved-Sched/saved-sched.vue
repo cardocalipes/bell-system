@@ -4,20 +4,22 @@
             <h1>SAVED SCHEDULES</h1>
         </div>
         <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
-        <div class="schedule-container">
-            <div class="schedule-column" onclick="applySchedule(1)">Schedule Name 1</div>
-            <div class="schedule-column" onclick="applySchedule(2)">Schedule Name 2</div>
-            <div class="schedule-column" onclick="applySchedule(3)">Schedule Name 3</div>
-            <div class="schedule-column" onclick="applySchedule(4)">Schedule Name 4</div>
-            <div class="schedule-column" onclick="applySchedule(5)">Schedule Name 5</div>
-            <div class="schedule-column" onclick="applySchedule(6)">Schedule Name 6</div>
-            <div class="schedule-column" onclick="applySchedule(7)">Schedule Name 7</div>
-            <div class="schedule-column" onclick="applySchedule(8)">Schedule Name 8</div>
-            <div class="schedule-column" onclick="applySchedule(9)">Schedule Name 9</div>
-            <div class="schedule-column" onclick="applySchedule(10)">Schedule Name 10</div>
-            <div class="buttons">
-                <button onclick="applyClickedSchedule()">Apply</button>
-                <button>Edit</button>
+        <div class="scontainer">
+            <div class="schedule-container">
+                <div class="schedule-column" onclick="applySchedule(1)">Schedule Name 1</div>
+                <div class="schedule-column" onclick="applySchedule(2)">Schedule Name 2</div>
+                <div class="schedule-column" onclick="applySchedule(3)">Schedule Name 3</div>
+                <div class="schedule-column" onclick="applySchedule(4)">Schedule Name 4</div>
+                <div class="schedule-column" onclick="applySchedule(5)">Schedule Name 5</div>
+                <div class="schedule-column" onclick="applySchedule(6)">Schedule Name 6</div>
+                <div class="schedule-column" onclick="applySchedule(7)">Schedule Name 7</div>
+                <div class="schedule-column" onclick="applySchedule(8)">Schedule Name 8</div>
+                <div class="schedule-column" onclick="applySchedule(9)">Schedule Name 9</div>
+                <div class="schedule-column" onclick="applySchedule(10)">Schedule Name 10</div>
+                <div class="buttons">
+                    <button onclick="applyClickedSchedule()">Apply</button>
+                    <button>Edit</button>
+                </div>
             </div>
         </div>
     </div>
@@ -97,6 +99,9 @@
             width: calc(10% - 10px);
             text-align: center;
             background-color: #f9f9f9;
+        }
+        .scontainer{
+            padding: 50px;
         }
         .schedule-column:hover {
             background-color: #e0e0e0;
