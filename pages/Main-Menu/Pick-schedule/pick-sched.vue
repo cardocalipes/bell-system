@@ -61,12 +61,17 @@ body {
             flex: 1;
             font: caption;
             font-size: 15px;
+            margin: 20px 500px;
+            padding: 30px 0 50px 0;
+        }
+        .scontainer{
+            padding: 20px;
         }
         .box:hover {
             transform: scale(1.05);
         }
         .menu-icon{
-            font-size: 50px;
+            font-size: 45px;
         }
         .hc{
             text-align: center;

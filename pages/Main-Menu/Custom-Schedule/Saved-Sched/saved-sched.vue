@@ -4,7 +4,6 @@
             <h1>SAVED SCHEDULES</h1>
         </div>
         <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
-        <div class="scontainer">
             <div class="schedule-container">
                 <div class="schedule-column" onclick="applySchedule(1)">Schedule Name 1</div>
                 <div class="schedule-column" onclick="applySchedule(2)">Schedule Name 2</div>
@@ -21,7 +20,6 @@
                     <button>Edit</button>
                 </div>
             </div>
-        </div>
     </div>
 </template>
 

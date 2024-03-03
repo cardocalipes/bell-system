@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="header">
-            <h1>CUSTOM SCHEDULE</h1>
+            <h1>CUSTOM SCHEDULES</h1>
         </div>
         <li class="back-button"><NuxtLink to ="/Main-Menu/main-menu">Back</NuxtLink></li>
         <div class="scontainer">
