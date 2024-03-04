@@ -6,8 +6,8 @@
                 <router-link :to="{ path: '/Main-Menu/Pick-Schedule/pick-sched' }"><div class="menu-label">Pick Schedule</div></router-link>
             </div>
             <div class="menu-item" onclick="goToHistoryPage()">
-                <span class="menu-icon">&#x1F4DD;</span>
-                <div class="menu-label">History</div>
+                <span class="menu-icon"><NuxtLink to = "/Main-Menu/History/history-page">&#x1F4DD;</NuxtLink></span>
+                <div class="menu-label"><NuxtLink to = "/Main-Menu/History/history-page">History</NuxtLink></div>
             </div>
         </div>
         <div>
@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-function goToSchedulePage() {
+        function goToSchedulePage() {
             // Redirect to the "Pick Schedule" page
             //window.location.href = "/Main-Menu/Pick-Schedule/pick-sched";
         }
@@ -36,7 +36,7 @@ function goToSchedulePage() {
 
         function goToHistoryPage() {
             // Redirect to the "History" page
-            window.location.href = "history.html";
+            window.location.href = "/Main-Menu/History/history-page";
         }
 
         function logOut() {

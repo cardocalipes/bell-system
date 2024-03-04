@@ -26,7 +26,7 @@
         </div>
         <div class="buttons">
             <button @click="apply()">Apply</button>
-            <button>Cancel</button>
+            <button><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Cancel</NuxtLink></button>
         </div>
     </div>
 </body>
@@ -81,8 +81,10 @@ async function apply(){
             color: #fff;
             border: none;
             border-radius: 5px;
-            padding: 10px 20px;
+            padding: 20px 20px;
             cursor: pointer;
+            font: caption;
+            font-size: 20px;
         }
 
         .schedule-name {

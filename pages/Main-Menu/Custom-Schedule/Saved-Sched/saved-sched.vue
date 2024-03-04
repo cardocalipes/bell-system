@@ -15,6 +15,7 @@
                 <div class="schedule-column" onclick="applySchedule(8)">Schedule Name 8</div>
                 <div class="schedule-column" onclick="applySchedule(9)">Schedule Name 9</div>
                 <div class="schedule-column" onclick="applySchedule(10)">Schedule Name 10</div>
+
                 <div class="buttons">
                     <button onclick="applyClickedSchedule()">Apply</button>
                     <button>Edit</button>
@@ -75,8 +76,10 @@
             color: #fff;
             border: none;
             border-radius: 5px;
-            padding: 10px 20px;
+            padding: 20px 20px;
             cursor: pointer;
+            font: caption;
+            font-size: 20px;
         }
         .schedule-container {
             align-items: center;
