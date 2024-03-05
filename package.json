@@ -20,6 +20,8 @@
     "@prisma/client": "^5.4.2",
     "@vueuse/core": "^10.9.0",
     "dayjs": "^1.11.10",
-    "nuxt": "^3.8.0"
+    "luxon": "^3.4.4",
+    "nuxt": "^3.8.0",
+    "vue-dayjs-plugin": "^1.0.0"
   }
 }
