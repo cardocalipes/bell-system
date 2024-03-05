@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="header">
-            <h1>CUSTOM SCHEDULE</h1>
+            <h1>CUSTOM SCHEDULES</h1>
         </div>
         <li class="back-button"><NuxtLink to ="/Main-Menu/main-menu">Back</NuxtLink></li>
         <div class="scontainer">
@@ -53,8 +53,10 @@ body {
             color: #fff;
             border: none;
             border-radius: 5px;
-            padding: 10px 20px;
+            padding: 20px 20px;
             cursor: pointer;
+            font: caption;
+            font-size: 20px;
         }
         .container {
             background-repeat: no-repeat;
@@ -71,19 +73,22 @@ body {
             cursor: pointer;
             transition: transform 0.2s;
             flex: 1;
-            padding: 40px 0;
-            margin: 30px 200px 50px 200px;
             font: caption;
             font-size: 15px;
+            display: inline-block;
+            width: 500px;
+            padding: 80px 0 100px 0;
+            margin: 100px 50px 0 50px;
         }
         .scontainer{
             padding: 50px;
+            text-align: center;
         }
         .box:hover {
             transform: scale(1.05);
         }
         .box-icon {
-            font-size: 80px;
+            font-size: 100px;
         }
         .box-label {
             font-size: 18px;

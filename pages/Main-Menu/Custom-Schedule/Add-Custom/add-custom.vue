@@ -1,32 +1,32 @@
 <template>
     <body>
     <div class="container">
+        <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
         <div class="header">
-            <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
-            <div class="schedule-name">Schedule Name</div>
+            <div class="schedule-name">Schedule Name:</div><input id="sched-name">
         </div>
+        <div class="content">
+            <div class="form-group">
+                <label class="label" for="start-time">Start Time:</label>
+                <input class="input" v-model="startTime" type="time" id="start-time">
+            </div>
 
-        <div class="form-group">
-            <label class="label" for="start-time">Start Time:</label>
-            <input class="input" v-model="startTime" type="time" id="start-time">
+            <div class="form-group">
+                <label class="label" for="duration">Duration:</label>
+                <input class="input" v-model="duration" type="time" id="duration">
+            </div>
+
+            <div class="form-group">
+                <label class="label">Break Time:</label>
+                <label class="checkbox-label" for="break-yes">Yes</label>
+                <input type="checkbox" id="break-yes">
+                <label class="checkbox-label" for="break-no">No</label>
+                <input type="checkbox" id="break-no">
+            </div>
         </div>
-
-        <div class="form-group">
-            <label class="label" for="duration">Duration:</label>
-            <input class="input" v-model="duration" type="time" id="duration">
-        </div>
-
-        <div class="form-group">
-            <label class="label">Break Time:</label>
-            <label class="checkbox-label" for="break-yes">Yes</label>
-            <input type="checkbox" id="break-yes">
-            <label class="checkbox-label" for="break-no">No</label>
-            <input type="checkbox" id="break-no">
-        </div>
-
         <div class="buttons">
             <button @click="apply()">Apply</button>
-            <button>Cancel</button>
+            <button><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Cancel</NuxtLink></button>
         </div>
     </div>
 </body>
@@ -55,17 +55,36 @@ async function apply(){
         }
 
         .container {
-            width: 400px;
-            margin: 0 auto;
-            padding: 20px;
+            background-repeat: no-repeat;
+            background-image: url('~/public/images/bg.png');
+            height: 98vh;
+            background-size: 1530px 850px;
         }
-
+        .content {
+            text-align: center;
+            font: caption;
+            font-size: 20px;
+            background-color: #b7d9ff;
+            margin: 50px 300px;
+            padding: 20px 0 50px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
         .header {
             text-align: center;
         }
 
         .back-button {
-            float: left;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 20px 20px;
+            cursor: pointer;
+            font: caption;
+            font-size: 20px;
         }
 
         .schedule-name {
@@ -74,6 +93,7 @@ async function apply(){
 
         .form-group {
             margin-top: 20px;
+
         }
 
         .label {
@@ -93,5 +113,6 @@ async function apply(){
         .buttons {
             text-align: center;
             margin-top: 20px;
+            padding: 0 10px;
         }
 </style>

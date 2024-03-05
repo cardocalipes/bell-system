@@ -23,7 +23,7 @@
 </script>
 
 <style scoped>
-body {
+        body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
         }
@@ -34,8 +34,10 @@ body {
             color: #fff;
             border: none;
             border-radius: 5px;
-            padding: 10px 20px;
+            padding: 20px 20px;
             cursor: pointer;
+            font: caption;
+            font-size: 20px;
         }
         .header{
             text-align: center;
@@ -61,12 +63,20 @@ body {
             flex: 1;
             font: caption;
             font-size: 15px;
+            display: inline-block;
+            width: 350px;
+            padding: 60px 0 80px 0;
+            margin: 150px 50px 0 50px;
+        }
+        .scontainer{
+            padding: 20px;
+            text-align: center;
         }
         .box:hover {
             transform: scale(1.05);
         }
         .menu-icon{
-            font-size: 50px;
+            font-size: 80px;
         }
         .hc{
             text-align: center;
