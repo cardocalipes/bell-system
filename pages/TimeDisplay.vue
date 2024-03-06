@@ -2,8 +2,8 @@
 <!-- npm install luxon -->
 <template>
   <div>
-    <h1>Current Time in the Philippines</h1>
-    <p>{{ currentTime }}</p>
+    <h1 class="time">TIME CHEEEECK:</h1>
+    <p class="time">{{ currentTime }}</p>
   </div>
 </template>
 
@@ -31,4 +31,9 @@ export default {
 
 <style scoped>
 /* Add your custom styles here if needed */
+  .time {
+    font: caption;
+    font-size: 50px;
+    font-weight: bold;
+  }
 </style>

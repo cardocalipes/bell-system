@@ -55,10 +55,11 @@
             background-color: #f2f2f2;
         }
         .container{
-            background-repeat: no-repeat;
             background-image: url('~/public/images/bg.png');
-            height: 98vh;
-            background-size: 1530px 850px;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+             background-repeat: no-repeat;
         }
         .header {
             text-align: center;

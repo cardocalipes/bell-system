@@ -53,12 +53,13 @@ body {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            height: 98vh;
             margin: 0 auto;
 
             background-image: url('~/public/images/bg.png');
-            background-size: 1530px 850px;
-            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+             background-repeat: no-repeat;
         }
         .menu-item {
             text-align: center;

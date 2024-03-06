@@ -26,7 +26,7 @@
         </div>
         <div class="buttons">
             <button @click="apply()">Apply</button>
-            <button><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Cancel</NuxtLink></button>
+            <button>Cancel</button>
         </div>
     </div>
 </body>
@@ -55,10 +55,11 @@ async function apply(){
         }
 
         .container {
-            background-repeat: no-repeat;
             background-image: url('~/public/images/bg.png');
-            height: 98vh;
-            background-size: 1530px 850px;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+             background-repeat: no-repeat;
         }
         .content {
             text-align: center;
