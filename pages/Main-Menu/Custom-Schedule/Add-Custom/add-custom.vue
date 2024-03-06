@@ -1,6 +1,9 @@
 <template>
     <body>
     <div class="container">
+        <div class="time">
+        <p>{{ currentDateTime }}</p>
+        </div>
         <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
         <div class="header">
             <div class="schedule-name">Schedule Name:</div><input id="sched-name">
@@ -47,6 +50,23 @@ async function apply(){
 })
         console.log(applySched);
 }
+
+        import { ref, onMounted } from 'vue';
+        import { DateTime } from 'luxon';
+
+        const currentDateTime = ref('');
+
+        onMounted(() => {
+        // Update date and time every second
+        setInterval(updateDateTime, 1000);
+        // Initial update
+        updateDateTime();
+        });
+
+        function updateDateTime() {
+        const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('yyyy-MM-dd HH:mm:ss');
+        currentDateTime.value = formattedDateTime;
+        }
 </script>
 
 <style scoped>
@@ -115,5 +135,13 @@ async function apply(){
             text-align: center;
             margin-top: 20px;
             padding: 0 10px;
+        }
+        .time {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          color: #000000;
+          font-size: 14px;
+          font-weight: bold;
         }
 </style>

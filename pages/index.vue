@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div class="time">
+      <p>{{ currentDateTime }}</p>
+    </div>
     <div class="logo">
       <img src="~/public/images/logo-circle_1.png" alt="BELLHUB Logo" width="200" height="200" />
       <h2>BELLHUB</h2>
@@ -33,7 +36,22 @@ console.log(authRequest);
 
 }
 
+import { ref, onMounted } from 'vue';
+import { DateTime } from 'luxon';
 
+const currentDateTime = ref('');
+
+onMounted(() => {
+  // Update date and time every second
+  setInterval(updateDateTime, 1000);
+  // Initial update
+  updateDateTime();
+});
+
+function updateDateTime() {
+  const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('yyyy-MM-dd HH:mm:ss');
+  currentDateTime.value = formattedDateTime;
+}
 </script>
 
 
@@ -60,6 +78,7 @@ body {
             background-image: url('~/public/images/bg.png');
             margin: 0 auto;
 
+            background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
         }
@@ -97,5 +116,13 @@ body {
         }
         .signin-btn:hover {
             background-color: #0056b3;
+        }
+        .time {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          color: #000000;
+          font-size: 14px;
+          font-weight: bold;
         }
 </style>

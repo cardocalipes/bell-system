@@ -1,5 +1,8 @@
 <template>
     <div class="menu-container">
+    <div class="time">
+      <p>{{ currentDateTime }}</p>
+    </div>
         <div>
             <div class="menu-item" onclick="goToSchedulePage()">
                 <router-link :to="{ path: '/Main-Menu/Pick-Schedule/pick-sched' }"><span class="menu-icon">&#x1F4C5;</span></router-link> 
@@ -43,6 +46,23 @@
             // Redirect to the logout page or perform logout action
             window.location.href = "logout.html";
         }
+
+        import { ref, onMounted } from 'vue';
+        import { DateTime } from 'luxon';
+
+        const currentDateTime = ref('');
+
+        onMounted(() => {
+        // Update date and time every second
+        setInterval(updateDateTime, 1000);
+        // Initial update
+        updateDateTime();
+        });
+
+        function updateDateTime() {
+        const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('yyyy-MM-dd HH:mm:ss');
+        currentDateTime.value = formattedDateTime;
+        }
 </script>
 
 <style scoped>
@@ -84,5 +104,13 @@ body {
             font-weight: bold;
             font: caption;
             font-size: 20px;
+        }
+        .time {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          color: #000000;
+          font-size: 14px;
+          font-weight: bold;
         }
 </style>
