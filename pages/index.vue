@@ -58,10 +58,10 @@ body {
             text-align: center;
             padding: 120px;
             background-image: url('~/public/images/bg.png');
-            background-size: 100%;
-            background-repeat: no-repeat;
-            height: 608px;
             margin: 0 auto;
+
+            background-size: cover;
+            background-position: center;
         }
         .logo {
             color: #07053a;
