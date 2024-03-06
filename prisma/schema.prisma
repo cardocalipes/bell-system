@@ -7,47 +7,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user_data {
-  id          Int    @id @default(autoincrement())
-  Username    String @db.VarChar(255)
-  Access_Code String @db.VarChar(255)
-}
-
 model schedule1 {
-  ring_number Int
-  timer       DateTime? @db.Time(0)
-  real_time   DateTime? @db.Time(0)
-  id1         Int       @id @default(autoincrement())
+  id         Int       @id
+  ringnumber Int?
+  timer      DateTime? @db.Time(0)
+  realtime   DateTime? @db.Time(0)
 }
 
 model schedule2 {
-  id2         Int       @id @default(autoincrement())
-  ring_number Int
-  timer       DateTime? @db.Time(0)
-  real_time   DateTime? @db.Time(0)
+  id         Int       @id
+  ringnumber Int?
+  timer      DateTime? @db.Time(0)
+  realtime   DateTime? @db.Time(0)
 }
 
 model schedule3 {
-  id3         Int       @id @default(autoincrement())
-  ring_number Int
-  timer       DateTime? @db.Time(0)
-  real_time   DateTime? @db.Time(0)
+  id         Int       @id
+  ringnumber Int?
+  timer      DateTime? @db.Time(0)
+  realtime   DateTime? @db.Time(0)
+}
+
+model savedsched {
+  id        Int       @id
+  schedNum  Int?
+  schedName String?   @db.VarChar(255)
+  startTime DateTime? @db.Time(0)
+  duration  Int?
+  increment Int?
+  breakTime Boolean?
 }
 
 model history {
-  id         Int      @id @default(autoincrement())
-  ringNumber Int
-  date       DateTime
-  time       String
-  type       String
-}
-
-model saved_schedule {
-  id         Int      @id @default(autoincrement())
-  Sched_num  String
-  sched_name String
-  start      DateTime
-  duration   Int
-  increment  Int
-  BreakTime  Boolean
+  id      Int       @id
+  ringnum Int?
+  date    DateTime? @db.DateTime(0)
+  time    DateTime? @db.Time(0)
+  type    String?   @db.VarChar(255)
 }
