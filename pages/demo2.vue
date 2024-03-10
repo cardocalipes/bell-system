@@ -32,7 +32,7 @@ useIntervalFn(() => {
         useFetch('http://192.168.0.65/setAlarm', {
                 method: 'post',
                 body: { 
-                    id: "e",
+                    id: "emergency",
                     alarm: "now",
                     duration: "15"
                 }
@@ -43,17 +43,28 @@ useIntervalFn(() => {
         useFetch('http://192.168.0.65/setAlarm', {
                 method: 'post',
                 body: { 
-                    id: "e",
+                    id: "emergency",
                     alarm: "now",
                     duration: "15"
                 }
             })
     }
+    //Option 1: get data from database and compare to current time for it to ring
+    // else if(current time == time from schedu from database){
+    //     useFetch('http://192.168.0.65/setAlarm', {
+    //             method: 'post',
+    //             body: { 
+    //                 id: "1 2 or 3",
+    //                 alarm: "now",
+    //                 duration: "15"
+    //             }
+    //         })
+    // }
     else {
         useFetch('http://192.168.0.65/setAlarm', {
                 method: 'post',
                 body: { 
-                    id: "e",
+                    id: "emergency",
                     alarm: "stop",
                     duration: "0"
                 }
