@@ -110,6 +110,7 @@ async function apply(){
 
         .schedule-name {
             font-size: 24px;
+            padding-top: 20px;
         }
 
         .form-group {

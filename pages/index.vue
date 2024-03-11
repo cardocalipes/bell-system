@@ -4,7 +4,7 @@
       <p>{{ currentDateTime }}</p>
     </div>
     <div class="logo">
-      <img src="~/public/images/logo-circle_1.png" alt="BELLHUB Logo" width="200" height="200" />
+      <img src="~/public/images/logo-circle_1.png" alt="BELLHUB Logo" width="250" height="250" />
       <h2>BELLHUB</h2>
     </div>
     <div class="login-form">
@@ -84,13 +84,13 @@ body {
         .logo {
             color: #07053a;
             font: caption;
-            font-size: 30px;
+            font-size: 40px;
         }
         .login-form {
             background-color: #b7d9ff;
             width: 20%;
             height: 20%;
-            padding: 30px 100px 25px 100px;
+            padding: 50px 100px 10px 100px;
             border-radius: 5px;
             margin: 0 auto;
         }
