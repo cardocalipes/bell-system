@@ -120,7 +120,8 @@ body {
           top: 20px;
           right: 20px;
           color: #000000;
-          font-size: 14px;
+          font-size: 20px;
           font-weight: bold;
+          font: caption;
         }
 </style>

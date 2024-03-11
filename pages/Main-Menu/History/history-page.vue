@@ -36,10 +36,11 @@
             background-color: #f2f2f2;
         }
         .container{
-            background-repeat: no-repeat;
             background-image: url('~/public/images/bg.png');
-            height: 98vh;
-            background-size: 1530px 850px;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+             background-repeat: no-repeat;
         }
         .header {
             text-align: center;
@@ -67,7 +68,8 @@
           top: 20px;
           right: 20px;
           color: #000000;
-          font-size: 14px;
+          font-size: 20px;
           font-weight: bold;
+          font: caption;
         }
 </style>

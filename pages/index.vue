@@ -73,14 +73,13 @@ body {
             margin-bottom: 15px;
         }
         .container {
+            padding-top: 50px;
             text-align: center;
-            padding: 120px;
             background-image: url('~/public/images/bg.png');
-            margin: 0 auto;
-
-            background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
+            height: 100vh;
+            background-repeat: no-repeat;
         }
         .logo {
             color: #07053a;
@@ -89,9 +88,9 @@ body {
         }
         .login-form {
             background-color: #b7d9ff;
-            width: 23%;
+            width: 20%;
             height: 20%;
-            padding: 25px 100px;
+            padding: 30px 100px 25px 100px;
             border-radius: 5px;
             margin: 0 auto;
         }
@@ -122,7 +121,8 @@ body {
           top: 20px;
           right: 20px;
           color: #000000;
-          font-size: 14px;
+          font-size: 20px;
           font-weight: bold;
+          font: caption;
         }
 </style>
