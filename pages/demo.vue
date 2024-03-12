@@ -101,7 +101,7 @@ const submitForm4 = async () => {
         body: { 
             id: "emergency",
             alarm: "now",
-            duration: "5"
+            duration: "2"
         }
     })
 

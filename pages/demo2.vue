@@ -20,7 +20,9 @@ const { data , refresh } = await useAsyncData('sensor', async () => {
     $fetch('http://192.168.0.8/sensor1'), //192.168.0.8 swapped
     $fetch('http://192.168.0.65/sensor2'), //192.168.0.65 swapped
     $fetch('http://192.168.0.201/sensor3'), //192.168.0.201
-    $fetch('http://192.168.0.214/sensor4') //192.168.0.214
+    $fetch('http://192.168.0.216/sensor4') //192.168.0.216
+    //if an esp does not have an mq135 sensor, just use the normal bell system code (no sensor) because if it is uploaded with the fire sensor there are Mq_UPDATE spikes since the pins
+    //assigned to the sensor is available, even hand interference causes a spike
   ])
 
   return { sensor1, sensor2, sensor3, sensor4 }
@@ -28,27 +30,49 @@ const { data , refresh } = await useAsyncData('sensor', async () => {
 
 useIntervalFn(() => {
 
-    if (data.value.sensor1.s1 == "active" && data.value.sensor2.s2 == "active" && data.value.sensor3.s3 == "active" && data.value.sensor4.s4 == "active") {
-        useFetch('http://192.168.0.65/setAlarm', {
-                method: 'post',
-                body: { 
-                    id: "emergency",
-                    alarm: "now",
-                    duration: "15"
-                }
-            })
-    }
+    // if (data.value.sensor1.s1 == "active" && data.value.sensor2.s2 == "active" && data.value.sensor3.s3 == "active" && data.value.sensor4.s4 == "active") {
+    //     useFetch('http://192.168.0.65/setAlarm', {
+    //             method: 'post',
+    //             body: { 
+    //                 id: "emergency",
+    //                 alarm: "now",
+    //                 duration: "15"
+    //             }
+    //         })
+    // }
      //provide additional case for fire sensor
-    else if(data.value.sensor1.s1 == "active_fire"){
-        useFetch('http://192.168.0.65/setAlarm', {
-                method: 'post',
-                body: { 
-                    id: "emergency",
-                    alarm: "now",
-                    duration: "15"
-                }
-            })
-    }
+    // else if(data.value.sensor1.s1 == "active_fire"){
+    //     useFetch('http://192.168.0.65/setAlarm', {
+    //             method: 'post',
+    //             body: { 
+    //                 id: "emergency",
+    //                 alarm: "now",
+    //                 duration: "10"
+    //             }
+    //         })
+    // }
+    // else if(conditions for first ring){
+    //     useFetch('http://192.168.0.8/setAlarm', {
+    //             method: 'post',
+    //             body: { 
+    //                 id: "firstRing",
+    //                 alarm: "now",
+    //                 duration: "1"
+    //             }
+    //         })
+    // }
+    // else if(conditions for second ring){
+    //     useFetch('http://192.168.0.8/setAlarm', {
+    //             method: 'post',
+    //             body: { 
+    //                 id: "secondRing",
+    //                 alarm: "now",
+    //                 duration: "10"
+    //             }
+    //         })
+    // }
+    //id: time
+    //ha duration igbutang bell ring time
     //Option 1: get data from database and compare to current time for it to ring
     // else if(current time == time from schedu from database){
     //     useFetch('http://192.168.0.65/setAlarm', {
@@ -60,16 +84,27 @@ useIntervalFn(() => {
     //             }
     //         })
     // }
-    else {
-        useFetch('http://192.168.0.65/setAlarm', {
+    // else {
+    //     useFetch('http://192.168.0.65/setAlarm', {
+    //             method: 'post',
+    //             body: { 
+    //                 id: "toStop",
+    //                 alarm: "stop",
+    //                 duration: "0"
+    //             }
+    //         })
+    // }
+    useFetch('http://192.168.0.65/setAlarm', {
                 method: 'post',
                 body: { 
                     id: "emergency",
-                    alarm: "stop",
-                    duration: "0"
+                    alarm: "now",
+                    duration: "15"
                 }
             })
-    }
+    //types of id -> emergency and time | firstRing and secondRing
+    //types of alarm -> now and stop
+    // in the ifs statement in the firstRing and secondRing, set values for id to emergency and alarm to stop
   refresh() // will call the 'todos' endpoint, just above
 }, 3000) // call it back every 3s
 
