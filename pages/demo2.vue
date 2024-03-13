@@ -72,6 +72,27 @@ useIntervalFn(() => {
                 }
             })
     }
+    else if(currentDateTime == "16:00:00"){ //change time here
+        useFetch('http://192.168.91.47/setAlarm', {
+                method: 'post',
+                body: { 
+                    id: "emergency",
+                    alarm: "now",
+                    duration: "10"
+                }
+            })
+          //insert delay here
+          setTimeout(() => {
+            useFetch('http://192.168.91.47/setAlarm', {
+                  method: 'post',
+                  body: { 
+                      id: "emergency",
+                      alarm: "stop",
+                      duration: "10"
+                  }
+              });
+          }, 5000); //5 secs delay
+    }
     //time test for fixing kay na loop
     // else if(currentDateTime == "16:18"){
     //     useFetch('http://192.168.91.47/setAlarm', {
