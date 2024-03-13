@@ -14,10 +14,10 @@
         </thead>
         <tbody>
           <tr v-for="row in sched1Data" :key="row.id">
-            <td>{{ row.id1 }}</td>
-            <td>{{ row.ring_number }}</td>
+            <td>{{ row.id }}</td>
+            <td>{{ row.ringnumber }}</td>
             <td>{{ dayjs.utc(row.timer).utcOffset(-8, true).format("HH:mm") }}</td>
-            <td>{{ dayjs.utc(row.real_time).utcOffset(-8, true).format("HH:mm") }}</td>
+            <td>{{ dayjs.utc(row.realtime).utcOffset(-8, true).format("HH:mm") }}</td>
           </tr>
         </tbody>
       </table>
