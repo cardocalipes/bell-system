@@ -28,7 +28,7 @@
         });
 
         function updateDateTime() {
-        const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('HH:mm');
+        const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('HH:mm:ss');
         currentDateTime.value = formattedDateTime;
         }
         
@@ -38,10 +38,10 @@ import { useIntervalFn } from '@vueuse/core' // VueUse helper, install it : npm 
 const { data , refresh } = await useAsyncData('sensor', async () => {
   const [sensor1, sensor2, sensor3, sensor4] = await Promise.all([
     //setup sensor1 ip address first otherwise it will come out as null
-    $fetch('http://192.168.91.82/sensor1'), //192.168.0.8 swapped
-    $fetch('http://192.168.91.47/sensor2'), //192.168.0.65 swapped
-    $fetch('http://192.168.91.209/sensor3'), //192.168.0.201
-    $fetch('http://192.168.91.93/sensor4') //192.168.0.216
+    $fetch('http://192.168.64.82/sensor1'), //192.168.0.8 swapped
+    $fetch('http://192.168.64.47/sensor2'), //192.168.0.65 swapped
+    $fetch('http://192.168.64.209/sensor3'), //192.168.0.201
+    $fetch('http://192.168.64.94/sensor4') //192.168.0.216
     //if an esp does not have an mq135 sensor, just use the normal bell system code (no sensor) because if it is uploaded with the fire sensor there are Mq_UPDATE spikes since the pins
     //assigned to the sensor is available, even hand interference causes a spike
   ])
@@ -52,7 +52,7 @@ const { data , refresh } = await useAsyncData('sensor', async () => {
 useIntervalFn(() => {
 
     if (data.value.sensor1.s1 == "active" && data.value.sensor2.s2 == "active" && data.value.sensor3.s3 == "active" && data.value.sensor4.s4 == "active") {
-        useFetch('http://192.168.91.47/setAlarm', {
+        useFetch('http://192.168.64.47/setAlarm', {
                 method: 'post',
                 body: { 
                     id: "emergency",
@@ -63,7 +63,7 @@ useIntervalFn(() => {
     }
      //provide additional case for fire sensor
     else if(data.value.sensor1.s1 == "active_fire"){
-        useFetch('http://192.168.91.47/setAlarm', {
+        useFetch('http://192.168.64.47/setAlarm', {
                 method: 'post',
                 body: { 
                     id: "emergency",
@@ -73,8 +73,8 @@ useIntervalFn(() => {
             })
     }
     //time test for fixing kay na loop
-    else if(currentDateTime == "16:18"){
-        useFetch('http://192.168.91.47/setAlarm', {
+    else if(currentDateTime.value === "14:48:00"){
+        useFetch('http://192.168.64.47/setAlarm', {
                 method: 'post',
                 body: { 
                     id: "secondRing",
@@ -82,19 +82,9 @@ useIntervalFn(() => {
                     duration: "2"
                 }
             });
-        setTimeout(() => {
-        useFetch('http://192.168.91.47/setAlarm', {
-                method: 'post',
-                body: {
-                    id: "emergency",
-                    alarm: "stop",
-                    duration: "10"
-                 }
-             });
-        }, 5000);
     }
     else{
-      useFetch('http://192.168.91.47/setAlarm', {
+        useFetch('http://192.168.64.47/setAlarm', {
                 method: 'post',
                 body: { 
                     id: "emergency",
@@ -102,7 +92,7 @@ useIntervalFn(() => {
                     duration: "10"
                 }
             })
-    }
+        }
     // else if(conditions for first ring){
     //     useFetch('http://192.168.0.8/setAlarm', {
     //             method: 'post',
@@ -158,7 +148,7 @@ useIntervalFn(() => {
     //types of alarm -> now and stop
     // in the ifs statement in the firstRing and secondRing, set values for id to emergency and alarm to stop
   refresh() // will call the 'todos' endpoint, just above
-}, 3000) // call it back every 3s
+}, 750) // call it back every 
 
 
 </script>

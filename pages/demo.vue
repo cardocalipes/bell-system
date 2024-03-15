@@ -96,7 +96,7 @@ const submitForm3 = async () => {
 }
  
 const submitForm4 = async () => {
-    const { data: responseData } = await useFetch('http://192.168.91.47/setAlarm', {
+    const { data: responseData } = await useFetch('http://192.168.64.47/setAlarm', {
         method: 'post',
         body: { 
             id: "firstRing",
@@ -109,7 +109,7 @@ const submitForm4 = async () => {
 }
 
 const submitForm5 = async () => {
-    const { data: responseData } = await useFetch('http://192.168.91.47/setAlarm', {
+    const { data: responseData } = await useFetch('http://192.168.64.47/setAlarm', {
         method: 'post',
         body: { 
             id: "emergency",
