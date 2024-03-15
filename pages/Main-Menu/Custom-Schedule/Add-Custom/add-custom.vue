@@ -16,7 +16,7 @@
 
             <div class="form-group">
                 <label class="label" for="duration">Duration:</label>
-                <input class="input" v-model="duration" type="int" id="duration">
+                <input class="input" v-model="duration" type="number" id="duration">
             </div>
 
             <div class="form-group">
