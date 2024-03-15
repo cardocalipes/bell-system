@@ -40,8 +40,8 @@ model savedsched {
 
 model history {
   id      Int       @id
-  ringnum Int?
   date    DateTime? @db.DateTime(0)
   time    DateTime? @db.Time(0)
   type    String?   @db.VarChar(255)
+  ringnum Int?
 }
