@@ -8,7 +8,7 @@ const sched1Data = ref(await useFetch("/api/test/aa").data);
 <template>
 <table>
       <tr>
-        <td>{{ dayjs(sched1Data.realtime).format("HH:mm") }}</td>
+        <td>{{ dayjs(sched1Data.realtime).format("HH:mm:ss") }}</td>
       </tr>
   </table>
 
