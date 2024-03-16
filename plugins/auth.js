@@ -1,6 +1,6 @@
-export default ({ $auth }) => {
-    $auth.onRedirect((to, from) => {
+// export default ({ $auth }) => {
+//     $auth.onRedirect((to, from) => {
       
-    });
-  };
+//     });
+//   };
   

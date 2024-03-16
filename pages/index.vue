@@ -34,26 +34,25 @@
 </template>
 
 <script setup>
-
-  export default {
-    data() {
-      return {
-        email: '',
-        password: ''
-      };
-    },
-    methods: {
-      async login() {
-        try {
-          await this.$auth.loginWith('local', {
-            data: { email: this.email, password: this.password }
-          });
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    }
-  };
+  // export default {
+  //   data() {
+  //     return {
+  //       email: '',
+  //       password: ''
+  //     };
+  //   },
+  //   methods: {
+  //     async login() {
+  //       try {
+  //         await this.$auth.loginWith('local', {
+  //           data: { email: this.email, password: this.password }
+  //         });
+  //       } catch (error) {
+  //         console.error(error);
+  //       }
+  //     }
+  //   }
+  // };
 
 /*
 const username = ref();

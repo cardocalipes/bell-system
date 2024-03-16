@@ -9,17 +9,13 @@
             <th>ID</th>
             <th>Ring Number</th>
             <th>Real Time</th>
-            <th>Test</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="row in sched3Data" :key="row.id">
             <td>{{ row.id }}</td>
             <td>{{ row.ringnumber }}</td>
-            <td>{{ dayjs.utc(row.realtime).utcOffset(-8, true).format("HH:mm") }}</td>
-            <td>{{ dayjs.utc(row.timer).utcOffset(-8, true).format("HH:mm") }}</td>
-            <td>{{ dayjs.utc(row.realtime).utcOffset(-8, true).format("HH:mm") }}</td>
-            <td>{{ row.id }}</td>
+            <td>{{ dayjs(row.realtime).format("HH:mm") }}</td>
           </tr>
         </tbody>
       </table>

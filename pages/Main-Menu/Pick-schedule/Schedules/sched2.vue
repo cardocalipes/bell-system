@@ -15,8 +15,7 @@
           <tr v-for="row in sched2Data" :key="row.id">
             <td>{{ row.id }}</td>
             <td>{{ row.ringnumber }}</td>
-            <td>{{ dayjs.utc(row.timer).utcOffset(-8, true).format("HH:mm") }}</td>
-            <td>{{ dayjs.utc(row.realtime).utcOffset(-8, true).format("HH:mm") }}</td>
+            <td>{{ dayjs(row.realtime).format("HH:mm") }}</td>
           </tr>
         </tbody>
       </table>
