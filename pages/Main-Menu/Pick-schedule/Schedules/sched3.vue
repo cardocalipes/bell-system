@@ -9,6 +9,7 @@
             <th>ID</th>
             <th>Ring Number</th>
             <th>Real Time</th>
+            <th>Test</th>
           </tr>
         </thead>
         <tbody>
@@ -16,6 +17,9 @@
             <td>{{ row.id }}</td>
             <td>{{ row.ringnumber }}</td>
             <td>{{ dayjs.utc(row.realtime).utcOffset(-8, true).format("HH:mm") }}</td>
+            <td>{{ dayjs.utc(row.timer).utcOffset(-8, true).format("HH:mm") }}</td>
+            <td>{{ dayjs.utc(row.realtime).utcOffset(-8, true).format("HH:mm") }}</td>
+            <td>{{ row.id }}</td>
           </tr>
         </tbody>
       </table>
