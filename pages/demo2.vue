@@ -49,10 +49,11 @@ const { data , refresh } = await useAsyncData('sensor', async () => {
   return { sensor1, sensor2, sensor3, sensor4 }
 })
 
-useIntervalFn(() => {
+useIntervalFn(() => {//start of loop for webpage
 
     if (data.value.sensor1.s1 == "active" && data.value.sensor2.s2 == "active" && data.value.sensor3.s3 == "active" && data.value.sensor4.s4 == "active") {
         useFetch('http://192.168.64.47/setAlarm', {
+            //send data to history "earthquake ring at current time"
                 method: 'post',
                 body: { 
                     id: "emergency",
@@ -64,6 +65,7 @@ useIntervalFn(() => {
      //provide additional case for fire sensor
     else if(data.value.sensor1.s1 == "active_fire"){
         useFetch('http://192.168.64.47/setAlarm', {
+            //send data to history "fire ring at current time"
                 method: 'post',
                 body: { 
                     id: "emergency",
@@ -94,7 +96,7 @@ useIntervalFn(() => {
           }, 5000); //5 secs delay
     }
     //time test for fixing kay na loop
-    else if(currentDateTime.value === "14:48:00"){
+    else if(currentDateTime.value === "14:48:00"){// ig change ini na time to time nga aadto ha database
         useFetch('http://192.168.64.47/setAlarm', {
                 method: 'post',
                 body: { 
@@ -104,6 +106,29 @@ useIntervalFn(() => {
                 }
             });
     }
+    // else if(currentDateTime.value === "14:48:00"){// ig change ini na time to time nga aadto ha database
+    //     useFetch('http://192.168.64.47/setAlarm', {
+    //             method: 'post',
+    //             if(counter%2==0){ //if first ring
+    //                 body: { 
+    //                 id: "firstRing",
+    //                 alarm: "now",
+    //                 duration: "2"
+    //                 }
+    //             }
+    //             else if (counter%2==0){//if second ring
+    //                 body: { 
+    //                 id: "secondRing",
+    //                 alarm: "now",
+    //                 duration: "2"
+    //                 }
+    //             }
+    //             if(counter>30){//resets counter if lumapos na hit amount hit rings per day
+    //                 counter=1;
+    //             }
+                
+    //         });
+    // }
     else{
         useFetch('http://192.168.64.47/setAlarm', {
                 method: 'post',
@@ -169,7 +194,7 @@ useIntervalFn(() => {
     //types of alarm -> now and stop
     // in the ifs statement in the firstRing and secondRing, set values for id to emergency and alarm to stop
   refresh() // will call the 'todos' endpoint, just above
-}, 750) // call it back every 
+}, 750) // end of loop
 
 
 </script>
