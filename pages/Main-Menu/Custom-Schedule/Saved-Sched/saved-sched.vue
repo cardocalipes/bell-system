@@ -6,29 +6,22 @@
         <div class="header">
             <h1>SAVED SCHEDULES</h1>
         </div>
-        <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
-            <div class="schedule-container">
-                <div class="schedule-column" onclick="applySchedule(1)">Schedule Name 1</div>
-                <div class="schedule-column" onclick="applySchedule(2)">Schedule Name 2</div>
-                <div class="schedule-column" onclick="applySchedule(3)">Schedule Name 3</div>
-                <div class="schedule-column" onclick="applySchedule(4)">Schedule Name 4</div>
-                <div class="schedule-column" onclick="applySchedule(5)">Schedule Name 5</div>
-                <div class="schedule-column" onclick="applySchedule(6)">Schedule Name 6</div>
-                <div class="schedule-column" onclick="applySchedule(7)">Schedule Name 7</div>
-                <div class="schedule-column" onclick="applySchedule(8)">Schedule Name 8</div>
-                <div class="schedule-column" onclick="applySchedule(9)">Schedule Name 9</div>
-                <div class="schedule-column" onclick="applySchedule(10)">Schedule Name 10</div>
 
-                <div class="buttons">
+        <div class="schedule-container">
+            <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
+            <div v-for="sched in savedScheds.data" class="schedule-column" onclick="applySchedule(sched.id)">
+                {{ sched.schedname }}
+            </div>
+            <div class="buttons">
                     <button onclick="applyClickedSchedule()">Apply</button>
                     <button>Edit</button>
                 </div>
-            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
-    var selectedSchedule = null;
+    let selectedSchedule = null;
 
     function applySchedule(scheduleNumber) {
         selectedSchedule = scheduleNumber;
@@ -66,6 +59,9 @@
         const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('yyyy-MM-dd HH:mm:ss');
         currentDateTime.value = formattedDateTime;
         }
+
+        // Display
+        const savedScheds = ref(await useFetch("/api/saved_sched/getAll"));
 </script>
 
 <style scoped>
@@ -78,7 +74,8 @@
             background-size: cover;
             background-position: center;
             height: 100vh;
-             background-repeat: no-repeat;
+            background-repeat: no-repeat; 
+            background-attachment: fixed;
         }
         .header {
             text-align: center;

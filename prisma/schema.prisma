@@ -8,40 +8,37 @@ datasource db {
 }
 
 model schedule1 {
-  id         Int       @id
-  ringnumber Int?
-  timer      DateTime? @db.Time(0)
+  id         Int       @id @default(autoincrement())
   realtime   DateTime? @db.Time(0)
+  ringnumber Int
 }
 
 model schedule2 {
-  id         Int       @id
-  ringnumber Int?
-  timer      DateTime? @db.Time(0)
+  id         Int       @id @default(autoincrement())
   realtime   DateTime? @db.Time(0)
+  ringnumber Int
 }
 
 model schedule3 {
-  id         Int       @id
-  ringnumber Int?
-  timer      DateTime? @db.Time(0)
+  id         Int       @id @default(autoincrement())
   realtime   DateTime? @db.Time(0)
-}
-
-model savedsched {
-  id        Int       @id
-  schedNum  Int?
-  schedName String?   @db.VarChar(255)
-  startTime DateTime? @db.Time(0)
-  duration  Int?
-  increment Int?
-  breaktime Boolean?
+  ringnumber Int
 }
 
 model history {
-  id      Int       @id
-  ringnum Int?
-  date    DateTime? @db.DateTime(0)
+  id      Int       @id @default(autoincrement())
+  date    DateTime? @db.Time(0)
   time    DateTime? @db.Time(0)
   type    String?   @db.VarChar(255)
+  ringnum Int?
+}
+
+model savedsched {
+  id        Int       @id @default(autoincrement())
+  schednum  Int?
+  schedname String?   @db.VarChar(255)
+  starttime DateTime? @db.Time(0)
+  duration  Int?
+  increment Int?
+  breaktime Boolean?
 }

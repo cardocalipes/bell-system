@@ -2,7 +2,17 @@ import prisma from "~/server/db/prisma"
 
 export default defineEventHandler(async (event) => {
     const body = await readBody(event);
+
     
-    return body.startTime;
-    return body.duration;
+    const newStartTime = `2000-01-01 ${body.startTime}:00`;
+
+    const newSchedule = await prisma.savedsched.create({
+        data: {
+            schedname: body.schedname,
+            starttime: new Date(newStartTime),
+            duration: body.duration,
+        },
+    });
+
+    return newSchedule;
 });

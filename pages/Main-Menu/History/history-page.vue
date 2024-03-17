@@ -40,7 +40,8 @@
             background-size: cover;
             background-position: center;
             height: 100vh;
-             background-repeat: no-repeat;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
         .header {
             text-align: center;

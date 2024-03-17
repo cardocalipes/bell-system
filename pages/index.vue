@@ -7,19 +7,54 @@
       <img src="~/public/images/logo-circle_1.png" alt="BELLHUB Logo" width="250" height="250" />
       <h2>BELLHUB</h2>
     </div>
+
+    <div class="login-form">
+      <form @submit.prevent="login">
+        <label class="label" for="username">Username: </label>
+        <input class="un" v-model="email" type="email" placeholder="Email" required />
+        <label class="label" for="accessCode"> <br> Access Code: </label>
+        <input class="ac" v-model="password" type="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+<!--
     <div class="login-form">
       <label class="label" for="username">Username: </label>
-      <input class="un" v-model="username" type="text" id="username" />
+      <input class="un" v-model="username" type="text" id="username" required />
 
       <label class="label" for="accessCode"> <br> Access Code: </label>
-      <input class="ac" v-model="accessCode" type="password" id="accessCode" />
+      <input class="ac" v-model="accessCode" type="password" id="accessCode" required />
 
       <button @click="login()">Login</button>
     </div>
+  -->
+
   </div>
 </template>
 
 <script setup>
+/*
+   export default {
+     data() {
+       return {
+         email: '',
+         password: ''
+       };
+     },
+     methods: {
+       async login() {
+         try {
+           await this.$auth.loginWith('local', {
+             data: { email: this.email, password: this.password }
+           });
+         } catch (error) {
+           console.error(error);
+         }
+       }
+     }
+   };
+
 const username = ref();
 const accessCode = ref();
 
@@ -35,6 +70,7 @@ async function login() {
 console.log(authRequest);
 
 }
+*/
 
 import { ref, onMounted } from 'vue';
 import { DateTime } from 'luxon';

@@ -6,7 +6,8 @@
         </div>
         <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
         <div class="header">
-            <div class="schedule-name">Schedule Name:</div><input id="sched-name">
+        <div class="schedule-name">Schedule Name:</div>
+            <input class="input" v-model="schedname" type="string" id="sched-name">
         </div>
         <div class="content">
             <div class="form-group">
@@ -16,7 +17,7 @@
 
             <div class="form-group">
                 <label class="label" for="duration">Duration:</label>
-                <input class="input" v-model="duration" type="time" id="duration">
+                <input class="input" v-model="duration" type="number" id="duration">
             </div>
 
             <div class="form-group">
@@ -36,19 +37,20 @@
 </template>
 
 <script setup>
+const schedname = ref();
 const startTime = ref();
 const duration = ref();
 
 async function apply(){
-    const {data: { value: applySched}} = await useFetch ("/api/apply", {
+    const {data: { value: applySched}} = await useFetch ('/api/apply', {
         method: "POST",
         body: {
+            schedname: schedname.value,
             startTime: startTime.value,
             duration: duration.value
-        }
-       
-})
-        console.log(applySched);
+        }      
+    })
+    console.log(applySched);
 }
 
         import { ref, onMounted } from 'vue';

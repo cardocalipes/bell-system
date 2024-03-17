@@ -8,16 +8,14 @@
           <tr>
             <th>ID</th>
             <th>Ring Number</th>
-            <th>Timer</th>
             <th>Real Time</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="row in sched2Data" :key="row.id">
-            <td>{{ row.id2 }}</td>
-            <td>{{ row.ring_number }}</td>
-            <td>{{ dayjs.utc(row.timer).utcOffset(-8, true).format("HH:mm") }}</td>
-            <td>{{ dayjs.utc(row.real_time).utcOffset(-8, true).format("HH:mm") }}</td>
+            <td>{{ row.id }}</td>
+            <td>{{ row.ringnumber }}</td>
+            <td>{{ dayjs(row.realtime).format("HH:mm") }}</td>
           </tr>
         </tbody>
       </table>
