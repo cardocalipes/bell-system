@@ -18,6 +18,8 @@
         import { ref, onMounted } from 'vue';
         import { DateTime } from 'luxon';
 
+        let oddOrEvenCtr = 1;
+
         const currentDateTime = ref('');
 
         onMounted(() => {
@@ -28,7 +30,7 @@
         });
 
         function updateDateTime() {
-        const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('HH:mm:ss');
+        const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('HH:mm');
         currentDateTime.value = formattedDateTime;
         }
         
@@ -74,28 +76,8 @@ useIntervalFn(() => {//start of loop for webpage
                 }
             })
     }
-    else if(currentDateTime == "16:00:00"){ //change time here
-        useFetch('http://192.168.91.47/setAlarm', {
-                method: 'post',
-                body: { 
-                    id: "emergency",
-                    alarm: "now",
-                    duration: "10"
-                }
-            })
-          //insert delay here
-          setTimeout(() => {
-            useFetch('http://192.168.91.47/setAlarm', {
-                  method: 'post',
-                  body: { 
-                      id: "emergency",
-                      alarm: "stop",
-                      duration: "10"
-                  }
-              });
-          }, 5000); //5 secs delay
-    }
     //time test for fixing kay na loop
+    //IG COMMENT INI NA WHOLE SECTION NGAN IG UNCOMMENT AN OPTION 1
     else if(currentDateTime.value === "14:48:00"){// ig change ini na time to time nga aadto ha database
         useFetch('http://192.168.64.47/setAlarm', {
                 method: 'post',
@@ -106,6 +88,37 @@ useIntervalFn(() => {//start of loop for webpage
                 }
             });
     }
+    //Instructions:
+    // 1. Uncomment whole option 1
+    // 2. For the if statements, ig change ha may comparison hit currentDateTime === time from database
+    // 3. Run(it format hit time ig turn to HH:mm la)
+    
+    //option 1 ------- ASYA INI IT IG TEST
+    // if(oddOrEvenCtr == 1 && currentDateTime === ""){
+    //     useFetch('http://192.168.64.47/setAlarm', {
+    //             method: 'post',
+    //             body: { 
+    //                 id: "firstRing",
+    //                 alarm: "now",
+    //                 duration: "2"
+    //             }
+    //         });
+    //     oddOrEvenCtr = 0;
+    // }
+    // else if(oddOrEvenCtr == 0 && currentDateTime === ""){
+    //     useFetch('http://192.168.64.47/setAlarm', {
+    //             method: 'post',
+    //             body: { 
+    //                 id: "secondRing",
+    //                 alarm: "now",
+    //                 duration: "2"
+    //             }
+    //         });
+    //     oddOrEvenCtr = 1;
+    // }
+    //option 1 --------
+
+    //option 2
     // else if(currentDateTime.value === "14:48:00"){// ig change ini na time to time nga aadto ha database
     //     useFetch('http://192.168.64.47/setAlarm', {
     //             method: 'post',
@@ -125,10 +138,11 @@ useIntervalFn(() => {//start of loop for webpage
     //             }
     //             if(counter>30){//resets counter if lumapos na hit amount hit rings per day
     //                 counter=1;
-    //             }
-                
+    //             }    
     //         });
     // }
+    //option 2
+    
     else{
         useFetch('http://192.168.64.47/setAlarm', {
                 method: 'post',
@@ -139,57 +153,6 @@ useIntervalFn(() => {//start of loop for webpage
                 }
             })
         }
-    // else if(conditions for first ring){
-    //     useFetch('http://192.168.0.8/setAlarm', {
-    //             method: 'post',
-    //             body: { 
-    //                 id: "firstRing",
-    //                 alarm: "now",
-    //                 duration: "1"
-    //             }
-    //         })
-    // }
-    // else if(conditions for second ring){
-    //     useFetch('http://192.168.0.8/setAlarm', {
-    //             method: 'post',
-    //             body: { 
-    //                 id: "secondRing",
-    //                 alarm: "now",
-    //                 duration: "10"
-    //             }
-    //         })
-    // }
-    //id: time
-    //ha duration igbutang bell ring time
-    //Option 1: get data from database and compare to current time for it to ring
-    // else if(current time == time from schedu from database){
-    //     useFetch('http://192.168.0.65/setAlarm', {
-    //             method: 'post',
-    //             body: { 
-    //                 id: "1 2 or 3",
-    //                 alarm: "now",
-    //                 duration: "15"
-    //             }
-    //         })
-    // }
-    // else {
-    //     useFetch('http://192.168.0.65/setAlarm', {
-    //             method: 'post',
-    //             body: { 
-    //                 id: "toStop",
-    //                 alarm: "stop",
-    //                 duration: "0"
-    //             }
-    //         })
-    // }
-    // useFetch('http://192.168.91.47/setAlarm', {
-    //             method: 'post',
-    //             body: { 
-    //                 id: "firstRing",
-    //                 alarm: "now",
-    //                 duration: "1"
-    //             }
-    //         })
     //types of id -> emergency and time | firstRing and secondRing
     //types of alarm -> now and stop
     // in the ifs statement in the firstRing and secondRing, set values for id to emergency and alarm to stop
