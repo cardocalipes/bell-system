@@ -93,7 +93,6 @@ useIntervalFn(() => {//start of loop for webpage
     // 1. Uncomment whole option 1
     // 2. For the if statements, ig change ha may comparison hit currentDateTime === time from database
     // 3. Run(it format hit time ig turn to HH:mm la)
-    const TimeSched = ref(await useFetch("/api/test/aa").data);
 
    if(oddOrEvenCtr == 1 && currentDateTime === dayjs(TimeSched.realtime).format("HH:mm:ss")){
         useFetch('http://192.168.64.47/setAlarm', {
@@ -117,30 +116,6 @@ useIntervalFn(() => {//start of loop for webpage
             });
         oddOrEvenCtr = 1;
     }
-
-    else if(currentDateTime.value === "14:48:00"){// ig change ini na time to time nga aadto ha database
-        useFetch('http://192.168.64.47/setAlarm', {
-                method: 'post',
-                if(counter%2==0){ //if first ring
-                    body: { 
-                    id: "firstRing",
-                    alarm: "now",
-                    duration: "2"
-                    }
-                }
-                else if (counter%2==0){//if second ring
-                    body: { 
-                    id: "secondRing",
-                    alarm: "now",
-                    duration: "2"
-                    }
-                }
-                if(counter>30){//resets counter if lumapos na hit amount hit rings per day
-                    counter=1;
-                }    
-            });
-    }
-
     else{
         useFetch('http://192.168.64.47/setAlarm', {
                 method: 'post',
