@@ -1,14 +1,9 @@
-import { ref } from 'vue';
-import prisma from '~/server/db/prisma';
-
-const iRef = ref(); 
-
-iRef.value = 5; 
+import prisma from "~/server/db/prisma"
 
 export default defineEventHandler(async () => {
-  return await prisma.schedule1.findFirst({
-    where: {
-      id: iRef.value, 
-    },
-  });
+    return await prisma.schedule1.findFirst({
+        where: {
+            id: 25,
+        }
+    });
 });
