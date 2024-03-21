@@ -47,7 +47,7 @@ const { data , refresh } = await useAsyncData('sensor', async () => {
     $fetch('http://192.168.23.93/sensor4') //192.168.0.216
     //if an esp does not have an mq135 sensor, just use the normal bell system code (no sensor) because if it is uploaded with the fire sensor there are Mq_UPDATE spikes since the pins
     //assigned to the sensor is available, even hand interference causes a spike
-  ])
+  ])    
 
   return { sensor1, sensor2, sensor3, sensor4 }
 })

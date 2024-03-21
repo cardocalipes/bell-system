@@ -9,6 +9,8 @@
         <pre>
             {{ filtered1Data }}
         </pre>
+        <h2>Ring Type:</h2>
+        <p id="Schedule-1-type">N/A</p>
         <h2>Status:</h2>
         <p id="Schedule-1-status">Inactive</p> <!-- insert status for sched1-->
     </div>
@@ -17,6 +19,8 @@
         <pre>
             {{ filtered2Data }}
         </pre>
+        <h2>Ring Type:</h2>
+        <p id="Schedule-2-type">N/A</p>
         <h2>Status:</h2>
         <p id="Schedule-2-status">Inactive</p> <!-- insert status for sched2-->
     </div>
@@ -25,6 +29,8 @@
         <pre>
             {{ filtered3Data }}
         </pre>
+        <h2>Ring Type:</h2>
+        <p id="Schedule-3-type">N/A</p>
         <h2>Status:</h2>
         <p id="Schedule-3-status">Inactive</p> <!-- insert status for sched3-->
     </div>
@@ -102,12 +108,22 @@
   });
 
   function checkStatus(currentTime, scheduleTimes, scheduleName) {
-    const isActive = scheduleTimes.some(time => time === currentTime);
-    const statusElement = document.querySelector(`#${scheduleName.replace(' ', '-')}-status`);
-    if (statusElement) {
-      statusElement.textContent = isActive ? 'Active' : 'Inactive';
+  const currentIndex = scheduleTimes.findIndex(time => time === currentTime);
+  const statusElement = document.querySelector(`#${scheduleName.replace(' ', '-')}-status`);
+  const ringTypeElement = document.querySelector(`#${scheduleName.replace(' ', '-')}-type`);
+
+  if (statusElement && ringTypeElement) {
+    if (currentIndex !== -1) {
+      const ringType = (currentIndex % 2 === 0) ? 'Second Ring' : 'First Ring';
+      statusElement.textContent = 'Active';
+      ringTypeElement.textContent = `Ring Type: ${ringType}`;
+    } else {
+      statusElement.textContent = 'Inactive';
+      ringTypeElement.textContent = 'Ring Type: N/A';
     }
   }
+}
+
 </script>
 <style scoped>
         .time {
