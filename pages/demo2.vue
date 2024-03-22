@@ -31,7 +31,7 @@
         });
 
         function updateDateTime() {
-        const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('HH:mm');
+        const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('HH:mm:ss');
         currentDateTime.value = formattedDateTime;
         }
         
@@ -41,10 +41,10 @@ import { useIntervalFn } from '@vueuse/core' // VueUse helper, install it : npm 
 const { data , refresh } = await useAsyncData('sensor', async () => {
   const [sensor1, sensor2, sensor3, sensor4] = await Promise.all([
     //setup sensor1 ip address first otherwise it will come out as null
-    $fetch('http://192.168.23.82/sensor1'), //192.168.0.8 swapped
-    $fetch('http://192.168.23.48/sensor2'), //192.168.0.65 swapped
-    $fetch('http://192.168.23.209/sensor3'), //192.168.0.201
-    $fetch('http://192.168.23.93/sensor4') //192.168.0.216
+    $fetch('http://192.168.141.82/sensor1'), //192.168.0.8 swapped
+    $fetch('http://192.168.141.47/sensor2'), //192.168.0.65 swapped
+    $fetch('http://192.168.141.209/sensor3'), //192.168.0.201
+    $fetch('http://192.168.141.93/sensor4') //192.168.0.216
     //if an esp does not have an mq135 sensor, just use the normal bell system code (no sensor) because if it is uploaded with the fire sensor there are Mq_UPDATE spikes since the pins
     //assigned to the sensor is available, even hand interference causes a spike
   ])    
@@ -55,7 +55,7 @@ const { data , refresh } = await useAsyncData('sensor', async () => {
 useIntervalFn(() => {//start of loop for webpage
 
     if (data.value.sensor1.s1 == "active" && data.value.sensor2.s2 == "active" && data.value.sensor3.s3 == "active" && data.value.sensor4.s4 == "active") {
-        useFetch('http://192.168.23.48/setAlarm', {
+        useFetch('http://192.168.141.47/setAlarm', {
             //send data to history "earthquake ring at current time"
                 method: 'post',
                 body: { 
@@ -67,7 +67,7 @@ useIntervalFn(() => {//start of loop for webpage
     }
      //provide additional case for fire sensor
     else if(data.value.sensor1.s1 == "active_fire"){
-        useFetch('http://192.168.23.48/setAlarm', {
+        useFetch('http://192.168.141.47/setAlarm', {
             //send data to history "fire ring at current time"
                 method: 'post',
                 body: { 
@@ -96,7 +96,7 @@ useIntervalFn(() => {//start of loop for webpage
     // const TimeSched = ref(await useFetch("/api/test/aa").data);
 
    if(oddOrEvenCtr == 1 && currentDateTime === dayjs(TimeSched.realtime).format("HH:mm:ss")){
-        useFetch('http://192.168.23.48/setAlarm', {
+        useFetch('http://192.168.141.47/setAlarm', {
                 method: 'post',
                 body: { 
                     id: "firstRing",
@@ -107,7 +107,7 @@ useIntervalFn(() => {//start of loop for webpage
         oddOrEvenCtr = 0;
     }
     else if(oddOrEvenCtr == 0 && currentDateTime ===dayjs(TimeSched.realtime).format("HH:mm:ss")){
-        useFetch('http://192.168.23.48/setAlarm', {
+        useFetch('http://192.168.141.47/setAlarm', {
                 method: 'post',
                 body: { 
                     id: "secondRing",
@@ -117,32 +117,32 @@ useIntervalFn(() => {//start of loop for webpage
             });
         oddOrEvenCtr = 1;
     }
-
-    // else if(currentDateTime.value === "14:48:00"){// ig change ini na time to time nga aadto ha database
-    //     useFetch('http://192.168.64.47/setAlarm', {
-    //             method: 'post',
-    //             if(counter%2==0){ //if first ring
-    //                 body: { 
-    //                 id: "firstRing",
-    //                 alarm: "now",
-    //                 duration: "2"
-    //                 }
-    //             }
-    //             else if (counter%2==0){//if second ring
-    //                 body: { 
-    //                 id: "secondRing",
-    //                 alarm: "now",
-    //                 duration: "2"
-    //                 }
-    //             }
-    //             if(counter>30){//resets counter if lumapos na hit amount hit rings per day
-    //                 counter=1;
-    //             }    
-    //         });
-    // }
-
+/*
+     else if(currentDateTime.value === "11:28:00"){// ig change ini na time to time nga aadto ha database
+         useFetch('http://192.168.64.47/setAlarm', {
+                 method: 'post',
+                 if(counter%2==0){ //if first ring
+                     body: { 
+                     id: "firstRing",
+                     alarm: "now",
+                     duration: "2"
+                     }
+                 }
+                 else if (counter%2==0){//if second ring
+                     body: { 
+                     id: "secondRing",
+                     alarm: "now",
+                     duration: "2"
+                     }
+                 }
+                 if(counter>30){//resets counter if lumapos na hit amount hit rings per day
+                     counter=1;
+                 }    
+             });
+     }
+*/
     else{
-        useFetch('http://192.168.23.48/setAlarm', {
+        useFetch('http://192.168.141.47/setAlarm', {
                 method: 'post',
                 body: { 
                     id: "emergency",
