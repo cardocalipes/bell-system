@@ -59,7 +59,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
   const currentTime = dayjs(newDateTime).format("HH:mm:ss");
   const currentIndex = filteredData.value.findIndex(time => time === currentTime);
 
-  if (currentTime in filteredData) {
+  if (currentDateTime in filteredData) {
     const oddOrEvenCtr = currentIndex % 2; // Check if seconds are odd or even
     const ringId = oddOrEvenCtr === 0 ? "firstRing" : "secondRing"; // Determine ring type based on seconds
 
