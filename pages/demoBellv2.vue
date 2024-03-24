@@ -45,10 +45,10 @@ async function fetchData() {
 
 const { data, refresh } = useAsyncData('sensor', async () => {
   const [sensor1, sensor2, sensor3, sensor4] = await Promise.all([
-    $fetch('http://192.168.141.82/sensor1'),
-    $fetch('http://192.168.141.47/sensor2'),
-    $fetch('http://192.168.141.209/sensor3'),
-    $fetch('http://192.168.141.93/sensor4')
+    $fetch('http://192.168.157.82/sensor1'),
+    $fetch('http://192.168.157.47/sensor2'),
+    $fetch('http://192.168.157.209/sensor3'),
+    $fetch('http://192.168.157.94/sensor4')
   ]);
 
   return { sensor1, sensor2, sensor3, sensor4 };
@@ -63,7 +63,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
     const oddOrEvenCtr = currentIndex % 2; // Check if seconds are odd or even
     const ringId = oddOrEvenCtr === 0 ? "firstRing" : "secondRing"; // Determine ring type based on seconds
 
-    useFetch('http://192.168.141.47/setAlarm', {
+    useFetch('http://192.168.157.47/setAlarm', {
       method: 'post',
       body: {
         id: ringId,
@@ -73,7 +73,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
     });
   } else {
     if (data.value.sensor1.s1 == "active" && data.value.sensor2.s2 == "active" && data.value.sensor3.s3 == "active" && data.value.sensor4.s4 == "active") {
-      useFetch('http://192.168.141.47/setAlarm', {
+      useFetch('http://192.168.157.47/setAlarm', {
         method: 'post',
         body: {
           id: "emergency",
@@ -82,7 +82,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
         }
       });
     } else if (data.value.sensor1.s1 == "active_fire") {
-      useFetch('http://192.168.141.47/setAlarm', {
+      useFetch('http://192.168.157.47/setAlarm', {
         method: 'post',
         body: {
           id: "emergency",
@@ -91,7 +91,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
         }
       });
     } else {
-      useFetch('http://192.168.141.47/setAlarm', {
+      useFetch('http://192.168.157.47/setAlarm', {
         method: 'post',
         body: {
           id: "emergency",
