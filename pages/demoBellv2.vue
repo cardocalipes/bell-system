@@ -34,6 +34,7 @@ function updateDateTime() {
   currentDateTime.value = formattedDateTime;
 }
 
+//make reusable
 async function fetchData() {
   console.log("FETCHED DATA SUCCESSFULLY");
   try {
@@ -111,6 +112,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
 
   refresh();
 });
+//make reusable
 </script>
 
 <style scoped>
