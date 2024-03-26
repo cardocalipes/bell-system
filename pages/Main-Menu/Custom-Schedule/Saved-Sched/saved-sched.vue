@@ -14,7 +14,7 @@
             </div>
             <div class="buttons">
                     <button onclick="applyClickedSchedule()">Apply</button>
-                    <button>Edit</button>
+                    <button onclick="editSchedule()">Edit</button>
                 </div>
         </div>
     </div>
@@ -42,6 +42,12 @@
         for (var i = 0; i < columns.length; i++) {
             columns[i].style.backgroundColor = '#f9f9f9';
         }
+    }
+
+    function editSchedule() {
+            
+
+
     }
         import { ref, onMounted } from 'vue';
         import { DateTime } from 'luxon';

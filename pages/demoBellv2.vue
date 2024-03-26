@@ -21,6 +21,7 @@ import dayjs from "dayjs";
 const currentDateTime = ref('');
 const schedData = ref();
 const filteredData = ref([]);
+const type = ref();
 
 onMounted(() => {
   // Update date and time every second
@@ -89,7 +90,10 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
           duration: "15"
         }
       });
-    } else if (data.value.sensor1.s1 == "active_fire") {
+      sensorDatabase();
+    } 
+    
+    else if (data.value.sensor1.s1 == "active_fire") {
       useFetch('http://192.168.157.47/setAlarm', {
         method: 'post',
         body: {
@@ -109,10 +113,21 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
       });
     }
   }
-
   refresh();
 });
-//make re
+
+
+async function sensorDatabase(){
+  const {data: { value: newHistory}} = await useFetch ('/api/sensors', {
+        method: "POST",
+        body: {
+            type: 'earthquake',
+            currentTime: currentTime.value
+        }      
+    })
+    console.log(newHistory);
+}
+
 </script>
 
 <style scoped>
