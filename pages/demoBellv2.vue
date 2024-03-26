@@ -90,7 +90,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
           duration: "15"
         }
       });
-      sensorDatabase();
+      earthquakeDatabase();
     } 
     
     else if (data.value.sensor1.s1 == "active_fire") {
@@ -102,6 +102,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
           duration: "10"
         }
       });
+      fireDatabase();
     } else {
       useFetch('http://192.168.157.47/setAlarm', {
         method: 'post',
@@ -117,7 +118,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
 });
 
 
-async function sensorDatabase(){
+async function earthquakeDatabase(){
   const {data: { value: newHistory}} = await useFetch ('/api/sensors', {
         method: "POST",
         body: {
@@ -127,6 +128,18 @@ async function sensorDatabase(){
     })
     console.log(newHistory);
 }
+
+async function fireDatabase(){
+  const {data: { value: newHistory}} = await useFetch ('/api/sensors', {
+        method: "POST",
+        body: {
+            type: 'fire',
+            currentTime: currentTime.value
+        }      
+    })
+    console.log(newHistory);
+}
+
 
 </script>
 
