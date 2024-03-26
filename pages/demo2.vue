@@ -41,9 +41,9 @@ import { useIntervalFn } from '@vueuse/core' // VueUse helper, install it : npm 
 const { data , refresh } = await useAsyncData('sensor', async () => {
   const [sensor1, sensor2, sensor3, sensor4] = await Promise.all([
     //setup sensor1 ip address first otherwise it will come out as null
-    $fetch('http://192.168.141.82/sensor1'), //192.168.0.8 swapped
-    $fetch('http://192.168.141.47/sensor2'), //192.168.0.65 swapped
-    $fetch('http://192.168.141.209/sensor3'), //192.168.0.201
+    $fetch('http://192.168.0.8/sensor1'), //192.168.0.8 swapped
+    $fetch('http://192.168.0.8/sensor2'), //192.168.0.65 swapped
+    $fetch('http://192.168.0.8/sensor3'), //192.168.0.201
     $fetch('http://192.168.141.93/sensor4') //192.168.0.216
     //if an esp does not have an mq135 sensor, just use the normal bell system code (no sensor) because if it is uploaded with the fire sensor there are Mq_UPDATE spikes since the pins
     //assigned to the sensor is available, even hand interference causes a spike

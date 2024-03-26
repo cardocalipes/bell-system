@@ -19,9 +19,12 @@ import { DateTime } from 'luxon';
 import dayjs from "dayjs";
 
 const currentDateTime = ref('');
+//NEED
 const schedData = ref();
 const filteredData = ref([]);
+//NEED
 const type = ref();
+
 
 onMounted(() => {
   // Update date and time every second
@@ -31,18 +34,19 @@ onMounted(() => {
 });
 
 function updateDateTime() {
-  const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('HH:mm');
+  const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('HH:mm:ss');
   currentDateTime.value = formattedDateTime;
 }
 
+//FINAL FUNCTION FOR BELL RING
 //make reusable
 async function fetchData() {
   console.log("FETCHED DATA SUCCESSFULLY");
   try {
-    const response = await useFetch("/api/sched");
+    const response = await useFetch("/api/schedthree");
     schedData.value = response.data.value;
     for(const data of response.data.value) {
-      filteredData.value.push(dayjs(data.realtime).format("HH:mm"))
+      filteredData.value.push(dayjs(data.realtime).format("HH:mm:ss"))
     }
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -51,10 +55,10 @@ async function fetchData() {
 
 const { data, refresh } = useAsyncData('sensor', async () => {
   const [sensor1, sensor2, sensor3, sensor4] = await Promise.all([
-    $fetch('http://192.168.157.82/sensor1'),
-    $fetch('http://192.168.157.47/sensor2'),
-    $fetch('http://192.168.157.209/sensor3'),
-    $fetch('http://192.168.157.93/sensor4')
+    $fetch('http://192.168.0.8/sensor1'),
+    $fetch('http://192.168.0.65/sensor2'),
+    $fetch('http://192.168.0.201/sensor3'),
+    $fetch('http://192.168.0.214/sensor4')
   ]);
 
   return { sensor1, sensor2, sensor3, sensor4 };
@@ -62,7 +66,7 @@ const { data, refresh } = useAsyncData('sensor', async () => {
 
 fetchData();
 watch(currentDateTime, (newDateTime, oldDateTime) => {
-  const currentTime = dayjs(newDateTime).format("HH:mm");
+  const currentTime = dayjs(newDateTime).format("HH:mm:ss");
   const currentIndex = filteredData.value.indexOf(currentDateTime.value);
 
   if (filteredData.value.includes(currentDateTime.value)) {
@@ -71,7 +75,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
     const oddOrEvenCtr = currentIndex % 2; // Check if seconds are odd or even
     const ringId = oddOrEvenCtr === 0 ? "secondRing" : "firstRing"; // Determine ring type based on seconds
     console.log("ID: ", ringId);
-      useFetch('http://192.168.157.47/setAlarm', {
+      useFetch('http://192.168.0.65/setAlarm', {
         method: 'post',
         body: {
           id: ringId,
@@ -82,7 +86,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
   } else {
     console.log(filteredData);
     if (data.value.sensor1.s1 == "active" && data.value.sensor2.s2 == "active" && data.value.sensor3.s3 == "active" && data.value.sensor4.s4 == "active") {
-      useFetch('http://192.168.157.47/setAlarm', {
+      useFetch('http://192.168.0.65/setAlarm', {
         method: 'post',
         body: {
           id: "emergency",
@@ -94,7 +98,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
     } 
     
     else if (data.value.sensor1.s1 == "active_fire") {
-      useFetch('http://192.168.157.47/setAlarm', {
+      useFetch('http://192.168.0.65/setAlarm', {
         method: 'post',
         body: {
           id: "emergency",
@@ -104,7 +108,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
       });
       fireDatabase();
     } else {
-      useFetch('http://192.168.157.47/setAlarm', {
+      useFetch('http://192.168.0.65/setAlarm', {
         method: 'post',
         body: {
           id: "emergency",
@@ -139,7 +143,7 @@ async function fireDatabase(){
     })
     console.log(newHistory);
 }
-
+//END
 
 </script>
 

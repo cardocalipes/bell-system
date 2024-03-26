@@ -36,13 +36,22 @@
             </div>
 
         </form>
+        <p>{{ipAddresses[2]}}</p>
     </div>
 </template>
 
 <script setup>
 import { useIntervalFn } from '@vueuse/core' // VueUse helper, install it : npm i @vueuse/core
+const ipAddresses = ref([]);
+onMounted(() => {
+    // Retrieve saved IP addresses from localStorage
+    const savedIPs = localStorage.getItem('ipAddresses');
+    if (savedIPs) {
+      ipAddresses.value = JSON.parse(savedIPs);
+    }
+  });
 
-const { data: content , refresh} = await useFetch('http://192.168.0.65/sensor')
+const { data: content , refresh} = await useFetch(`http://${ipAddresses.value[0]}/sensor`)
 
 useIntervalFn(() => {
   refresh() // will call the 'todos' endpoint, just above
