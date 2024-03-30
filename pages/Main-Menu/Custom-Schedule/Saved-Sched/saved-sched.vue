@@ -1,146 +1,149 @@
 <template>
     <div class="container">
-        <div class="time">
+      <div class="time">
         <p>{{ currentDateTime }}</p>
+      </div>
+      <div class="header">
+        <h1>SAVED SCHEDULES</h1>
+      </div>
+  
+      <div class="schedule-container">
+        <ul class="back-button">
+          <li><router-link to="/Main-Menu/Custom-Schedule/custom-sched">Back</router-link></li>
+        </ul>
+        <div v-for="index in 10" :key="index" :class="['schedule-column', {'highlighted': selectedSchedule === `customSched${index}`}]" @click="applySchedule(`customSched${index}`)">
+          CustomSched{{ index }}
         </div>
-        <div class="header">
-            <h1>SAVED SCHEDULES</h1>
+        <div class="buttons">
+          <button @click="applyClickedSchedule">Apply</button>
+          <button @click="deleteSchedule">Delete</button>
         </div>
-
-        <div class="schedule-container">
-            <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
-            <div v-for="sched in savedScheds.data" class="schedule-column" onclick="applySchedule(sched.id)">
-                {{ sched.schedname }}
-            </div>
-            <div class="buttons">
-                    <button onclick="applyClickedSchedule()">Apply</button>
-                    <button onclick="editSchedule()">Edit</button>
-                </div>
-        </div>
+      </div>
     </div>
-</template>
-
-<script setup>
-    let selectedSchedule = null;
-
-    function applySchedule(scheduleNumber) {
-        selectedSchedule = scheduleNumber;
-        resetColumnStyles();
-        document.querySelectorAll('.schedule-column')[scheduleNumber - 1].style.backgroundColor = '#33cc33';
-    }
-
-    function applyClickedSchedule() {
-        if (selectedSchedule !== null) {
-            alert("The selected schedule is applied to the system.");
-        } else {
-            alert("Please select a schedule to apply.");
-        }
-    }
-
-    function resetColumnStyles() {
-        var columns = document.querySelectorAll('.schedule-column');
-        for (var i = 0; i < columns.length; i++) {
-            columns[i].style.backgroundColor = '#f9f9f9';
-        }
-    }
-
-    function editSchedule() {
-            
-
-
-    }
-        import { ref, onMounted } from 'vue';
-        import { DateTime } from 'luxon';
-
-        const currentDateTime = ref('');
-
-        onMounted(() => {
+  </template>
+  
+  <script>
+  import { ref, onMounted } from 'vue';
+  import { DateTime } from 'luxon';
+  
+  export default {
+    setup() {
+      const currentDateTime = ref('');
+      const selectedSchedule = ref(null);
+  
+      onMounted(() => {
         // Update date and time every second
         setInterval(updateDateTime, 1000);
         // Initial update
         updateDateTime();
-        });
-
-        function updateDateTime() {
+      });
+  
+      function updateDateTime() {
         const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('yyyy-MM-dd HH:mm:ss');
         currentDateTime.value = formattedDateTime;
+      }
+  
+      function applySchedule(databaseName) {
+        selectedSchedule.value = databaseName;
+      }
+  
+      function applyClickedSchedule() {
+        if (selectedSchedule.value) {
+          alert(`Applying schedule: ${selectedSchedule.value}`);
+        } else {
+          alert("Please select a schedule to apply.");
         }
-
-        // Display
-        const savedScheds = ref(await useFetch("/api/saved_sched/getAll"));
-</script>
-
-<style scoped>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+      }
+  
+      function deleteSchedule() {
+        if (selectedSchedule.value) {
+          alert(`Deleting schedule: ${selectedSchedule.value}`);
+          // Reset selected schedule after deletion
+          selectedSchedule.value = null;
+        } else {
+          alert("Please select a schedule to delete.");
         }
-        .container{
-            background-image: url('~/public/images/bg.png');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            background-repeat: no-repeat; 
-            background-attachment: fixed;
-        }
-        .header {
-            text-align: center;
-            padding: 27px 0 0 0;
-            background-color: none;
-            font: caption;
-            font-weight: bold;
-            font-size: 25px;
-            color: #07053a;
-        }
-        .back-button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 20px 20px;
-            cursor: pointer;
-            font: caption;
-            font-size: 20px;
-        }
-        .schedule-container {
-            align-items: center;
-            width: 90%;
-            margin: 0 auto;
-            background-color: #b7d9ff;
-            margin: 25px;
-            padding: 100px 50px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-        .schedule-column {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 5px;
-            cursor: pointer;
-            display: inline-block;
-            width: calc(10% - 10px);
-            text-align: center;
-            background-color: #f9f9f9;
-        }
-        .scontainer{
-            padding: 50px;
-        }
-        .schedule-column:hover {
-            background-color: #e0e0e0;
-        }
-        .buttons {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .time {
-          position: absolute;
-          top: 20px;
-          right: 20px;
-          color: #000000;
-          font-size: 20px;
-          font-weight: bold;
-          font: caption;
-        }
-</style>
+      }
+  
+      return {
+        currentDateTime,
+        selectedSchedule,
+        applySchedule,
+        applyClickedSchedule,
+        deleteSchedule
+      };
+    }
+  };
+  </script>
+  
+  <style scoped>
+  .container {
+    background-image: url('~/public/images/bg.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    position: relative;
+  }
+  
+  .back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 20px 20px;
+    cursor: pointer;
+    font: caption;
+    font-size: 20px;
+  }
+  
+  .schedule-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px; /* Adjusted gap */
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    background-color: #b7d9ff;
+    margin: 25px;
+    padding: 100px 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .schedule-column {
+    border: 1px solid #ccc;
+    padding: 20px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+  
+  .schedule-column.highlighted {
+    background-color: #33cc33;
+  }
+  
+  .schedule-column:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .buttons {
+    grid-column: 1 / span 5; /* Span all columns */
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .time {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    font: caption;
+  }
+  </style>
+  

@@ -17,6 +17,7 @@
   
   onMounted(() => {
     // Retrieve saved IP addresses from localStorage
+    //use this
     const savedIPs = localStorage.getItem('ipAddresses');
     if (savedIPs) {
       ipAddresses.value = JSON.parse(savedIPs);

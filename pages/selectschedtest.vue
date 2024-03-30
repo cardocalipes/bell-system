@@ -39,6 +39,7 @@
     currentDateTime.value = formattedDateTime;
   }
   
+  //follow these
   async function fetchData(apiEndpoint) {
     try {
       const response = await useFetch(`/api/${apiEndpoint}`);

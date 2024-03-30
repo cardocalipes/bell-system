@@ -1,74 +1,83 @@
 <template>
     <body>
-    <div class="container">
-        <div class="time">
-        <p>{{ currentDateTime }}</p>
-        </div>
-        <li class="back-button"><NuxtLink to ="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
-        <div class="header">
-        <div class="schedule-name">Schedule Name:</div>
-            <input class="input" v-model="schedname" type="string" id="sched-name">
-        </div>
-        <div class="content">
-            <div class="form-group">
-                <label class="label" for="start-time">Start Time:</label>
-                <input class="input" v-model="startTime" type="time" id="start-time">
+        <div class="container">
+            <div class="time">
+                <p>{{ currentDateTime }}</p>
             </div>
+            <li class="back-button"><NuxtLink to="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
+            <div class="header">
+                <div class="schedule-name">Schedule Name:</div>
+                <input class="input" v-model="schedname" type="string" id="sched-name">
+            </div>
+            <div class="content">
+                <div class="form-group">
+                    <label class="label" for="start-time">Start Time:</label>
+                    <input class="input" v-model="startTime" type="time" id="start-time">
+                </div>
 
-            <div class="form-group">
-                <label class="label" for="duration">Duration:</label>
-                <input class="input" v-model="duration" type="number" id="duration">
-            </div>
+                <div class="form-group">
+                    <label class="label" for="duration">Duration:</label>
+                    <input class="input" v-model="duration" type="number" id="duration">
+                </div>
 
-            <div class="form-group">
-                <label class="label">Break Time:</label>
-                <label class="checkbox-label" for="break-yes">Yes</label>
-                <input type="checkbox" id="break-yes">
-                <label class="checkbox-label" for="break-no">No</label>
-                <input type="checkbox" id="break-no">
+                <div class="form-group">
+                    <label class="label" for="custom-schedule">Custom Schedule Number:</label>
+                    <select v-model="customScheduleNumber" class="input" id="custom-schedule">
+                        <option v-for="num in 10" :value="num">{{ num }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="label">Break Time:</label>
+                    <label class="checkbox-label" for="break-yes">Yes</label>
+                    <input type="checkbox" id="break-yes">
+                    <label class="checkbox-label" for="break-no">No</label>
+                    <input type="checkbox" id="break-no">
+                </div>
+            </div>
+            <div class="buttons">
+                <button @click="apply()">Apply</button>
+                <button>Cancel</button>
             </div>
         </div>
-        <div class="buttons">
-            <button @click="apply()">Apply</button>
-            <button>Cancel</button>
-        </div>
-    </div>
-</body>
+    </body>
 </template>
 
 <script setup>
-const schedname = ref();
-const startTime = ref();
-const duration = ref();
+import { ref } from 'vue';
+import { DateTime } from 'luxon';
 
-async function apply(){
-    const {data: { value: applySched}} = await useFetch ('/api/apply', {
+const schedname = ref('');
+const startTime = ref('');
+const duration = ref('');
+const customScheduleNumber = ref('');
+
+async function apply() {
+    const { data: { value: applySched } } = await useFetch('/api/apply', {
         method: "POST",
         body: {
             schedname: schedname.value,
             startTime: startTime.value,
-            duration: duration.value
-        }      
-    })
+            duration: duration.value,
+            customScheduleNumber: customScheduleNumber.value
+        }
+    });
     console.log(applySched);
 }
 
-        import { ref, onMounted } from 'vue';
-        import { DateTime } from 'luxon';
+const currentDateTime = ref('');
 
-        const currentDateTime = ref('');
+function updateDateTime() {
+    const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('yyyy-MM-dd HH:mm:ss');
+    currentDateTime.value = formattedDateTime;
+}
 
-        onMounted(() => {
-        // Update date and time every second
-        setInterval(updateDateTime, 1000);
-        // Initial update
-        updateDateTime();
-        });
-
-        function updateDateTime() {
-        const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('yyyy-MM-dd HH:mm:ss');
-        currentDateTime.value = formattedDateTime;
-        }
+onMounted(() => {
+    // Update date and time every second
+    setInterval(updateDateTime, 1000);
+    // Initial update
+    updateDateTime();
+});
 </script>
 
 <style scoped>

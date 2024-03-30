@@ -32,6 +32,7 @@
           this.errors[index] = '';
         }
       },
+      //also this
       saveSettings() {
         // Example: save to localStorage
         localStorage.setItem('ipAddresses', JSON.stringify(this.inputs.map(input => input.value)));
