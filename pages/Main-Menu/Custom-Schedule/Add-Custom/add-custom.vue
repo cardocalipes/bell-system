@@ -30,9 +30,9 @@
                 <div class="form-group">
                     <label class="label">Break Time:</label>
                     <label class="checkbox-label" for="break-yes">Yes</label>
-                    <input type="checkbox" id="break-yes">
+                    <input type="radio" id="break-yes" value="yes" v-model="breakTimeOption">
                     <label class="checkbox-label" for="break-no">No</label>
-                    <input type="checkbox" id="break-no">
+                    <input type="radio" id="break-no" value="no" v-model="breakTimeOption">
                 </div>
             </div>
             <div class="buttons">
@@ -51,19 +51,61 @@ const schedname = ref('');
 const startTime = ref('');
 const duration = ref('');
 const customScheduleNumber = ref('');
+const breakTimeOption = ref('');
 
 async function apply() {
-    const { data: { value: applySched } } = await useFetch('/api/apply', {
-        method: "POST",
-        body: {
-            schedname: schedname.value,
-            startTime: startTime.value,
-            duration: duration.value,
-            customScheduleNumber: customScheduleNumber.value
+    // Validate input values
+    console.log(breakTimeOption.value);
+    if (!startTime.value || !duration.value) {
+        alert("Please enter start time and duration.");
+        return;
+    }
+
+    // Convert start time to Luxon DateTime object
+    const startDateTime = DateTime.fromFormat(startTime.value, 'HH:mm');
+
+    // Convert duration to minutes
+    const durationMinutes = parseInt(duration.value);
+
+    // Initialize an array to store schedule times
+    const scheduleTimes = [];
+    let counts = 0;
+    
+    // Set initial time to start time
+    let currentTime = startDateTime;
+
+    // Loop until reaching the end of the duration
+    while (counts < 12) {
+        // Push current time to scheduleTimes array
+        if (counts == 0){
+            scheduleTimes.push(currentTime.toFormat('HH:mm'));
         }
-    });
-    console.log(applySched);
+        // Add 5 minutes for the next ring
+        if((counts == 2 || counts == 9) && breakTimeOption.value == "yes"){
+            currentTime = currentTime.plus({ minutes: 5 });
+            scheduleTimes.push(currentTime.toFormat('HH:mm'));
+            currentTime = currentTime.plus({ minutes: 15 });
+            scheduleTimes.push(currentTime.toFormat('HH:mm'));
+        } else {
+            currentTime = currentTime.plus({ minutes: 5 });
+            scheduleTimes.push(currentTime.toFormat('HH:mm'));
+            currentTime = currentTime.plus({ minutes: duration.value - 5 }); //duration - 5
+            scheduleTimes.push(currentTime.toFormat('HH:mm'));
+        }
+        
+        counts=counts+1;
+        if((counts == 10) && breakTimeOption.value == "no"){
+            break;
+        }
+    }
+    currentTime = currentTime.plus({ minutes: 5 });
+    scheduleTimes.push(currentTime.toFormat('HH:mm'));
+    // Output the generated schedule times
+    console.log(scheduleTimes);
+
+    // Here you can send the generated scheduleTimes to your backend API or perform any other necessary action.
 }
+
 
 const currentDateTime = ref('');
 
