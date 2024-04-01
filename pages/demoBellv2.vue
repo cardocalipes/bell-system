@@ -55,10 +55,10 @@ async function fetchData() {
 
 const { data, refresh } = useAsyncData('sensor', async () => {
   const [sensor1, sensor2, sensor3, sensor4] = await Promise.all([
-    $fetch('http://192.168.0.8/sensor1'),
-    $fetch('http://192.168.0.65/sensor2'),
-    $fetch('http://192.168.0.201/sensor3'),
-    $fetch('http://192.168.0.214/sensor4')
+    $fetch('http://192.168.0.216/sensor1'),
+    $fetch('http://192.168.0.216/sensor2'),
+    $fetch('http://192.168.0.216/sensor3'),
+    $fetch('http://192.168.0.216/sensor4')
   ]);
 
   return { sensor1, sensor2, sensor3, sensor4 };

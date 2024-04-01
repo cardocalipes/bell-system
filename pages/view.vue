@@ -27,7 +27,7 @@ onMounted(() => {
   setInterval(updateDateTime, 1000);
   updateDateTime();
   setTimeout(() => {
-    const savedSched = sessionStorage.getItem('selectedSchedule');
+    const savedSched = localStorage.getItem('selectedSchedule');
     fetchData(savedSched);
   }, 500); // Adjust the delay as needed
 });

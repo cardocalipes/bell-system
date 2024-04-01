@@ -103,6 +103,23 @@ async function apply() {
     // Output the generated schedule times
     console.log(scheduleTimes);
 
+    const payload = {
+        schedname: schedname.value,
+        startTime: startTime.value,
+        duration: duration.value,
+        customScheduleNumber: customScheduleNumber.value,
+        scheduleTimes: scheduleTimes,
+    };
+
+    // Example of sending the data to your backend
+    // Adjust URL and method as necessary
+    await fetch('/api/apply', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+    });
     // Here you can send the generated scheduleTimes to your backend API or perform any other necessary action.
 }
 

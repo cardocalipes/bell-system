@@ -2,7 +2,7 @@
     <div class="container">
       <h1>Saved IP Addresses</h1>
       <p>
-        {{ ipAddresses[1] }}
+        {{ ipAddresses[3] }}
       </p>
       <ul>
         <li v-for="(ip, index) in ipAddresses" :key="index">{{ ip }}</li>
@@ -22,6 +22,7 @@
     if (savedIPs) {
       ipAddresses.value = JSON.parse(savedIPs);
     }
+    console.log(ipAddresses.value[3]);
   });
   </script>
   

@@ -8,13 +8,13 @@
         </div>
         <div class="scontainer">
             <li class="back-button"><NuxtLink to ="/Main-Menu/main-menu">Back</NuxtLink></li>
-            <div class="box" onclick="selectSchedule(1)">
+            <div class="box" @click="applySchedule('sched')">
                 <router-link :to="{ path: '/Main-Menu/Pick-Schedule/Schedules/sched1' }"><h3>Schedule 1</h3><span class="menu-icon">&#x1F4C5;</span></router-link>       
             </div>
-            <div class="box" onclick="selectSchedule(2)">
+            <div class="box" @click="applySchedule('schedtwo')">
                 <router-link :to="{ path: '/Main-Menu/Pick-Schedule/Schedules/sched2' }"><h3>Schedule 2</h3><span class="menu-icon">&#x1F4C5;</span></router-link>       
             </div>
-            <div class="box" onclick="selectSchedule(3)">
+            <div class="box" @click="applySchedule('schedthree')">
                 <router-link :to="{ path: '/Main-Menu/Pick-Schedule/Schedules/sched3' }"><h3>Schedule 3</h3><span class="menu-icon">&#x1F4C5;</span></router-link>       
             </div>
         </div>
@@ -37,6 +37,11 @@ onMounted(() => {
 function updateDateTime() {
   const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('yyyy-MM-dd HH:mm:ss');
   currentDateTime.value = formattedDateTime;
+}
+function applySchedule(schedule) {
+  localStorage.setItem('selectedSchedule', schedule);
+  // Redirect to the view page
+  window.location.href = '/view';
 }
 </script>
 
