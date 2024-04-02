@@ -3,14 +3,14 @@
     <div class="time">
       <p>{{ currentDateTime }}</p>
     </div>
+    
     <div class="header">
       <h1>SAVED SCHEDULES</h1>
     </div>
-
+    <ul class="back-button">
+      <li><router-link to="/Main-Menu/Custom-Schedule/custom-sched">Back</router-link></li>
+    </ul>
     <div class="schedule-container">
-      <ul class="back-button">
-        <li><router-link to="/Main-Menu/Custom-Schedule/custom-sched">Back</router-link></li>
-      </ul>
       <div class="schedule-column" @click="applySchedule('customsched1')" :class="{ 'highlighted': selectedSchedule === 'customsched1' }">CustomSched1</div>
       <div class="schedule-column" @click="applySchedule('customsched2')" :class="{ 'highlighted': selectedSchedule === 'customsched2' }">CustomSched2</div>
       <div class="schedule-column" @click="applySchedule('customsched3')" :class="{ 'highlighted': selectedSchedule === 'customsched3' }">CustomSched3</div>
@@ -23,7 +23,6 @@
       <div class="schedule-column" @click="applySchedule('customsched10')" :class="{ 'highlighted': selectedSchedule === 'customsched10' }">CustomSched10</div>
       <div class="buttons">
         <button @click="applyClickedSchedule">Apply</button>
-        <button @click="deleteSchedule">Delete</button>
       </div>
     </div>
   </div>
@@ -123,6 +122,8 @@ export default {
   padding: 100px 50px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font: caption;
+  font-weight: bold;
 }
 
 .schedule-column {
@@ -156,4 +157,14 @@ export default {
   font-weight: bold;
   font: caption;
 }
+
+.header {
+  text-align: center;
+  padding: 27px 0 0 0;
+  background-color: none;
+  font: caption;
+  font-weight: bold;
+  font-size: 25px;
+  color: #07053a;
+        }
 </style>

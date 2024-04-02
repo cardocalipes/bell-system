@@ -63,114 +63,114 @@
         const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('yyyy-MM-dd HH:mm:ss');
         currentDateTime.value = formattedDateTime;
         }
-const schedData = ref();
-const filteredData = ref([]);
-//FINAL FUNCTION FOR BELL RING
-//make reusable
-async function fetchData() {
-  console.log("FETCHED DATA SUCCESSFULLY");
-  try {
-    const response = await useFetch("/api/schedthree");
-    schedData.value = response.data.value;
-    for(const data of response.data.value) {
-      filteredData.value.push(dayjs(data.realtime).format("HH:mm:ss"))
-    }
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-}
+// const schedData = ref();
+// const filteredData = ref([]);
+// //FINAL FUNCTION FOR BELL RING
+// //make reusable
+// async function fetchData() {
+//   console.log("FETCHED DATA SUCCESSFULLY");
+//   try {
+//     const response = await useFetch("/api/schedthree");
+//     schedData.value = response.data.value;
+//     for(const data of response.data.value) {
+//       filteredData.value.push(dayjs(data.realtime).format("HH:mm:ss"))
+//     }
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//   }
+// }
 
-const { data, refresh } = useAsyncData('sensor', async () => {
-  const [sensor1, sensor2, sensor3, sensor4] = await Promise.all([
-    $fetch('http://192.168.0.8/sensor1'),
-    $fetch('http://192.168.0.65/sensor2'),
-    $fetch('http://192.168.0.201/sensor3'),
-    $fetch('http://192.168.0.214/sensor4')
-  ]);
+// const { data, refresh } = useAsyncData('sensor', async () => {
+//   const [sensor1, sensor2, sensor3, sensor4] = await Promise.all([
+//     $fetch('http://192.168.0.8/sensor1'),
+//     $fetch('http://192.168.0.65/sensor2'),
+//     $fetch('http://192.168.0.201/sensor3'),
+//     $fetch('http://192.168.0.214/sensor4')
+//   ]);
 
-  return { sensor1, sensor2, sensor3, sensor4 };
-});
+//   return { sensor1, sensor2, sensor3, sensor4 };
+// });
 
-fetchData();
-watch(currentDateTime, (newDateTime, oldDateTime) => {
-  const currentTime = dayjs(newDateTime).format("HH:mm:ss");
-  const currentIndex = filteredData.value.indexOf(currentDateTime.value);
+// fetchData();
+// watch(currentDateTime, (newDateTime, oldDateTime) => {
+//   const currentTime = dayjs(newDateTime).format("HH:mm:ss");
+//   const currentIndex = filteredData.value.indexOf(currentDateTime.value);
 
-  if (filteredData.value.includes(currentDateTime.value)) {
-    console.log("HAHA: ", currentIndex);
-    console.log("TEST");
-    const oddOrEvenCtr = currentIndex % 2; // Check if seconds are odd or even
-    const ringId = oddOrEvenCtr === 0 ? "secondRing" : "firstRing"; // Determine ring type based on seconds
-    console.log("ID: ", ringId);
-      useFetch('http://192.168.0.65/setAlarm', {
-        method: 'post',
-        body: {
-          id: ringId,
-          alarm: "now",
-          duration: "2"
-        }
-      });
-  } else {
-    console.log(filteredData);
-    if (data.value.sensor1.s1 == "active" && data.value.sensor2.s2 == "active" && data.value.sensor3.s3 == "active" && data.value.sensor4.s4 == "active") {
-      useFetch('http://192.168.0.65/setAlarm', {
-        method: 'post',
-        body: {
-          id: "emergency",
-          alarm: "now",
-          duration: "15"
-        }
-      });
-      earthquakeDatabase();
-    } 
+//   if (filteredData.value.includes(currentDateTime.value)) {
+//     console.log("HAHA: ", currentIndex);
+//     console.log("TEST");
+//     const oddOrEvenCtr = currentIndex % 2; // Check if seconds are odd or even
+//     const ringId = oddOrEvenCtr === 0 ? "secondRing" : "firstRing"; // Determine ring type based on seconds
+//     console.log("ID: ", ringId);
+//       useFetch('http://192.168.0.65/setAlarm', {
+//         method: 'post',
+//         body: {
+//           id: ringId,
+//           alarm: "now",
+//           duration: "2"
+//         }
+//       });
+//   } else {
+//     console.log(filteredData);
+//     if (data.value.sensor1.s1 == "active" && data.value.sensor2.s2 == "active" && data.value.sensor3.s3 == "active" && data.value.sensor4.s4 == "active") {
+//       useFetch('http://192.168.0.65/setAlarm', {
+//         method: 'post',
+//         body: {
+//           id: "emergency",
+//           alarm: "now",
+//           duration: "15"
+//         }
+//       });
+//       earthquakeDatabase();
+//     } 
     
-    else if (data.value.sensor1.s1 == "active_fire") {
-      useFetch('http://192.168.0.65/setAlarm', {
-        method: 'post',
-        body: {
-          id: "emergency",
-          alarm: "now",
-          duration: "10"
-        }
-      });
-      fireDatabase();
-    } else {
-      useFetch('http://192.168.0.65/setAlarm', {
-        method: 'post',
-        body: {
-          id: "emergency",
-          alarm: "stop",
-          duration: "10"
-        }
-      });
-    }
-  }
-  refresh();
-});
+//     else if (data.value.sensor1.s1 == "active_fire") {
+//       useFetch('http://192.168.0.65/setAlarm', {
+//         method: 'post',
+//         body: {
+//           id: "emergency",
+//           alarm: "now",
+//           duration: "10"
+//         }
+//       });
+//       fireDatabase();
+//     } else {
+//       useFetch('http://192.168.0.65/setAlarm', {
+//         method: 'post',
+//         body: {
+//           id: "emergency",
+//           alarm: "stop",
+//           duration: "10"
+//         }
+//       });
+//     }
+//   }
+//   refresh();
+// });
 
 
-async function earthquakeDatabase(){
-  const {data: { value: newHistory}} = await useFetch ('/api/sensors', {
-        method: "POST",
-        body: {
-            type: 'earthquake',
-            currentTime: currentTime.value
-        }      
-    })
-    console.log(newHistory);
-}
+// async function earthquakeDatabase(){
+//   const {data: { value: newHistory}} = await useFetch ('/api/sensors', {
+//         method: "POST",
+//         body: {
+//             type: 'earthquake',
+//             currentTime: currentTime.value
+//         }      
+//     })
+//     console.log(newHistory);
+// }
 
-async function fireDatabase(){
-  const {data: { value: newHistory}} = await useFetch ('/api/sensors', {
-        method: "POST",
-        body: {
-            type: 'fire',
-            currentTime: currentTime.value
-        }      
-    })
-    console.log(newHistory);
-}
-//END
+// async function fireDatabase(){
+//   const {data: { value: newHistory}} = await useFetch ('/api/sensors', {
+//         method: "POST",
+//         body: {
+//             type: 'fire',
+//             currentTime: currentTime.value
+//         }      
+//     })
+//     console.log(newHistory);
+// }
+// //END
 </script>
 
 <style scoped>

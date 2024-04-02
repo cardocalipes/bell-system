@@ -19,6 +19,7 @@ import { DateTime } from 'luxon';
 import dayjs from "dayjs";
 
 const currentDateTime = ref('');
+const currentDateTimeDB = ref('');
 //NEED
 const schedData = ref();
 const filteredData = ref([]);
@@ -44,6 +45,8 @@ onMounted(() => {
 
 function updateDateTime() {
   const formattedDateTime = DateTime.now().setZone('Asia/Manila').toFormat('HH:mm:ss');
+  const formattedDateTimeDB = DateTime.now().setZone('Asia/Manila').toFormat('yyyy-MM-dd HH:mm:ss');
+  currentDateTimeDB.value = formattedDateTimeDB;
   currentDateTime.value = formattedDateTime;
 }
 
@@ -145,7 +148,7 @@ async function earthquakeDatabase(){
         method: "POST",
         body: {
             type: 'earthquake',
-            currentTime: currentTime.value
+            currentTime: formattedDateTimeDB.value
         }      
     })
     console.log(newHistory);
@@ -156,7 +159,7 @@ async function fireDatabase(){
         method: "POST",
         body: {
             type: 'fire',
-            currentTime: currentTime.value
+            currentTime: formattedDateTimeDB.value
         }      
     })
     console.log(newHistory);

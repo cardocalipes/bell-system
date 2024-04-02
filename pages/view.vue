@@ -1,13 +1,22 @@
 <template>
-  <div>
+  <div class="container">
     <h1> Current Time: {{ currentDateTime }}</h1>
-    <div v-if="currentSchedule">
-      <h1>{{ currentSchedule.name }}</h1>
-      <pre>{{ currentSchedule.data }}</pre>
-      <h2>Ring Type:</h2>
-      <p>Ring Type: {{ currentSchedule.ringType }}</p>
-      <h2>Status:</h2>
-      <p>Status: {{ currentSchedule.status }}</p>
+    <ul class="back-button">
+      <li><router-link to="/Main-Menu/Pick-Schedule/pick-sched">Back</router-link></li>
+    </ul>
+    <div class="content" v-if="currentSchedule">
+      <div class="line">
+        <h1>{{ currentSchedule.name }}</h1>
+        <pre>{{ currentSchedule.data }}</pre>
+      </div>
+      <div class="line">
+        <h2>Ring Type:</h2>
+        <p>Ring Type: {{ currentSchedule.ringType }}</p>
+      </div>
+      <div class="line">
+        <h2>Status:</h2>
+        <p>Status: {{ currentSchedule.status }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -57,6 +66,27 @@ async function fetchData(apiEndpoint) {
 </script>
 
 <style scoped>
+
+.line{
+  padding: 80px 0 0 100px;
+  display: inline-block;
+  color: #07053a;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: left;
+
+  background-image: url('~/public/images/bg.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-repeat: no-repeat;
+  font: caption;
+  color: #07053a;
+}
+
 .time {
   position: absolute;
   top: 20px;
@@ -66,4 +96,15 @@ async function fetchData(apiEndpoint) {
   font-weight: bold;
   font: caption;
 }
+.back-button {
+            position: absolute;
+            left: 10px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 0px 30px;
+            cursor: pointer;
+            font: caption;
+            font-size: 20px;
+        }
 </style>

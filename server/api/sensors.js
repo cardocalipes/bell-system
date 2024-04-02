@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
 
     const newHistory = await prisma.history.create({
         data: {
-            time: body.currentTime,
+            dateAndTime: body.currentTime,
             type: body.type,
         },
     });

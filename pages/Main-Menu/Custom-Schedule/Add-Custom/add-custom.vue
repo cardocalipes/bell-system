@@ -5,10 +5,6 @@
                 <p>{{ currentDateTime }}</p>
             </div>
             <li class="back-button"><NuxtLink to="/Main-Menu/Custom-Schedule/custom-sched">Back</NuxtLink></li>
-            <div class="header">
-                <div class="schedule-name">Schedule Name:</div>
-                <input class="input" v-model="schedname" type="string" id="sched-name">
-            </div>
             <div class="content">
                 <div class="form-group">
                     <label class="label" for="start-time">Start Time:</label>
@@ -37,7 +33,6 @@
             </div>
             <div class="buttons">
                 <button @click="apply()">Apply</button>
-                <button>Cancel</button>
             </div>
         </div>
     </body>
@@ -149,17 +144,25 @@ onMounted(() => {
             background-size: cover;
             background-position: center;
             height: 100vh;
-             background-repeat: no-repeat;
+            background-repeat: no-repeat;
+            padding-top: 50px;
+            font: caption;
         }
         .content {
+            height: 48%;
             text-align: center;
             font: caption;
+            font-weight: bold;
             font-size: 20px;
             background-color: #b7d9ff;
-            margin: 50px 300px;
-            padding: 20px 0 50px 0;
+            margin: 100px 300px 20px 300px;
+            padding: 60px 0 0px 0;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .input {
+            font-size: 20px;
+            margin: 0 0 0 20px;
         }
         .header {
             text-align: center;
@@ -184,7 +187,7 @@ onMounted(() => {
         }
 
         .form-group {
-            margin-top: 20px;
+            margin-top: 30px;
 
         }
 
@@ -194,7 +197,7 @@ onMounted(() => {
         }
 
         .input {
-            width: 200px;
+            width: 300px;
         }
 
         .checkbox-label {

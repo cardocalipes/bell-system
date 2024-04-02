@@ -6,16 +6,16 @@ export default defineEventHandler(async (event) => {
 
     // Fetch the corresponding Prisma model operation based on customScheduleNumber
     const modelMap = {
-        '1': prisma.customSched1,
-        '2': prisma.customSched2,
-        '3': prisma.customSched3,
-        '4': prisma.customSched4,
-        '5': prisma.customSched5,
-        '6': prisma.customSched6,
-        '7': prisma.customSched7,
-        '8': prisma.customSched8,
-        '9': prisma.customSched9,
-        '10': prisma.customSched10,
+        '1': prisma.customsched1,
+        '2': prisma.customsched2,
+        '3': prisma.customsched3,
+        '4': prisma.customsched4,
+        '5': prisma.customsched5,
+        '6': prisma.customsched6,
+        '7': prisma.customsched7,
+        '8': prisma.customsched8,
+        '9': prisma.customsched9,
+        '10': prisma.customsched10,
     };
     const model = modelMap[customScheduleNumber];
     if (!model) {
