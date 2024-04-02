@@ -74,9 +74,9 @@ const { data, refresh } = useAsyncData('sensor', async () => {
       throw new Error("IP addresses not initialized.");
     }
     const [sensor1, sensor2, sensor3, sensor4] = await Promise.all([
-      $fetch(`http://${ipAddresses.value[3]}/sensor1`),
-      $fetch(`http://${ipAddresses.value[3]}/sensor2`),
-      $fetch(`http://${ipAddresses.value[3]}/sensor3`),
+      $fetch(`http://${ipAddresses.value[0]}/sensor1`),
+      $fetch(`http://${ipAddresses.value[1]}/sensor2`),
+      $fetch(`http://${ipAddresses.value[2]}/sensor3`),
       $fetch(`http://${ipAddresses.value[3]}/sensor4`)
     ]);
 
@@ -94,7 +94,7 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
 
   if (filteredData.value.includes(currentDateTime.value)) {
     const oddOrEvenCtr = currentIndex % 2; // Check if seconds are odd or even
-    const ringId = oddOrEvenCtr === 0 ? "secondRing" : "firstRing"; // Determine ring type based on seconds
+    const ringId = oddOrEvenCtr === 0 ? "firstRing" : "secondRing"; // Determine ring type based on seconds
     console.log("ID: ", ringId);
       useFetch(`http://${ipAddresses.value[1]}/setAlarm`, {
         method: 'post',
@@ -143,27 +143,36 @@ watch(currentDateTime, (newDateTime, oldDateTime) => {
 });
 
 
-async function earthquakeDatabase(){
-  const {data: { value: newHistory}} = await useFetch ('/api/sensors', {
-        method: "POST",
-        body: {
-            type: 'earthquake',
-            currentTime: formattedDateTimeDB.value
-        }      
-    })
-    console.log(newHistory);
+async function earthquakeDatabase() {
+  try {
+    const response = await useFetch('/api/sensors', {
+      method: 'POST',
+      body: {
+        type: 'earthquake',
+        currentTime: currentDateTimeDB.value // Use currentDateTimeDB for timestamp
+      }
+    });
+    console.log('Earthquake data sent:', response.data);
+  } catch (error) {
+    console.error('Error sending earthquake data:', error);
+  }
 }
 
-async function fireDatabase(){
-  const {data: { value: newHistory}} = await useFetch ('/api/sensors', {
-        method: "POST",
-        body: {
-            type: 'fire',
-            currentTime: formattedDateTimeDB.value
-        }      
-    })
-    console.log(newHistory);
+async function fireDatabase() {
+  try {
+    const response = await useFetch('/api/sensors', {
+      method: 'POST',
+      body: {
+        type: 'fire',
+        currentTime: currentDateTimeDB.value // Use currentDateTimeDB for timestamp
+      }
+    });
+    console.log('Fire data sent:', response.data);
+  } catch (error) {
+    console.error('Error sending fire data:', error);
+  }
 }
+
 //END
 
 </script>

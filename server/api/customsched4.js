@@ -1,5 +1,5 @@
 import prisma from "~/server/db/prisma"
 
 export default defineEventHandler(async () => {
-    return await prisma.customSched4.findMany();
+    return await prisma.customsched4.findMany();
 });
