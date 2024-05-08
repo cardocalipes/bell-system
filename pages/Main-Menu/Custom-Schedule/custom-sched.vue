@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <div class="time">
-        <p>{{ currentDateTime }}</p>
-        </div>
         <div class="header">
             <h1>CUSTOM SCHEDULES</h1>
+        </div>
+        <div class="time">
+        <h4>{{ currentDateTime }}</h4>
         </div>
         <li class="back-button"><NuxtLink to ="/Main-Menu/main-menu">Back</NuxtLink></li>
         <div class="scontainer">
@@ -58,24 +58,26 @@ body {
         }
         .header{
             text-align: center;
-            padding: 27px 0 0 0;
+            padding: 23px 0 0 0;
+            margin-bottom: 5px;
             background-color: none;
             font: caption;
             font-weight: bold;
             font-size: 25px;
             color: #07053a;
+            background-color: #b7d9ff;
         }
         .back-button {
             position: absolute;
             top: 10px;
             left: 10px;
-            background-color: #007bff;
             color: #fff;
             border: none;
             border-radius: 5px;
             padding: 20px 20px;
             cursor: pointer;
             font: caption;
+            font-weight: bold;
             font-size: 20px;
         }
         .container {
@@ -117,11 +119,13 @@ body {
         }
         .time {
           position: absolute;
-          top: 20px;
-          right: 20px;
+          top: 8px;
+          right: 8px;
           color: #000000;
           font-size: 20px;
           font-weight: bold;
           font: caption;
+          background-color: #b7d9ff;
+          padding: 5px 50px 0px 1303px;
         }
 </style>

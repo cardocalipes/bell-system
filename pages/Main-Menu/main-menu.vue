@@ -1,7 +1,7 @@
 <template>
     <div class="menu-container">
     <div class="time">
-      <p>{{ currentDateTime }}</p>
+      <h4>{{ currentDateTime }}</h4>
     </div>
         <div>
             <div class="menu-item" onclick="goToSchedulePage()">
@@ -247,11 +247,10 @@ body {
         }
         .time {
           position: absolute;
-          top: 20px;
-          right: 20px;
+          top: 13px;
+          right: 58px;
           color: #000000;
-          font-size: 20px;
-          font-weight: bold;
+          font-size: 50px;
           font: caption;
         }
 </style>

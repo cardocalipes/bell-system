@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <div class="time">
-        <p>{{ currentDateTime }}</p>
-        </div>
         <div class="hc">
             <h1 class="header">PICK SCHEDULE</h1>
+        </div>
+        <div class="time">
+        <h4>{{ currentDateTime }}</h4>
         </div>
         <div class="scontainer">
             <li class="back-button"><NuxtLink to ="/Main-Menu/main-menu">Back</NuxtLink></li>
@@ -60,6 +60,7 @@ function applySchedule(schedule) {
             padding: 20px 20px;
             cursor: pointer;
             font: caption;
+            font-weight: bold;
             font-size: 20px;
         }
         .header{
@@ -104,20 +105,22 @@ function applySchedule(schedule) {
         }
         .hc{
             text-align: center;
-            padding: 10px;
+            padding: 6px 0 0px 0;
             background-color: none;
             font: caption;
             font-weight: bold;
             font-size: 25px;
             color: #07053a;
+            background-color: #b7d9ff;
         }
         .time {
-          position: absolute;
-          top: 20px;
-          right: 20px;
+            position: absolute;
+          top: 8px;
+          right: 8px;
           color: #000000;
-          font-size: 20px;
-          font-weight: bold;
+          font-size: 50px;
           font: caption;
+          background-color: #b7d9ff;
+          padding: 5px 50px 0px 1303px;
         }
 </style>
