@@ -1,76 +1,58 @@
-<template>
-  <body class="container">
-    <div class="settings">
-      <h2>Settings</h2>
-      <div v-for="(input, index) in inputs" :key="index" class="input-group">
-        <label>{{`IP Address ${index + 1}`}}</label>
-        <input v-model="input.value" @input="validateInput(index)" placeholder="Enter IP address">
-        <span v-if="errors[index]" class="error">{{errors[index]}}</span>
-      </div>
-      <button @click="saveSettings"><NuxtLink to = "/Main-Menu/main-menu">Save</NuxtLink></button>
-    </div>
-  </body>
-</template>
+<script setup lang="ts">
+const { status, signIn, signOut } = useAuth()
+const router = useRouter()
 
-<script>
-export default {
-  data() {
-    return {
-      inputs: [
-        { value: '' },
-        { value: '' },
-        { value: '' },
-        { value: '' }
-      ],
-      errors: ['', '', '', '']
-    };
-  },
-  methods: {
-    validateInput(index) {
-      const ip = this.inputs[index].value;
-      if (!/^(\d{1,3}\.){3}\d{1,3}$/.test(ip)) {
-        this.errors[index] = 'Invalid IP address';
-      } else {
-        this.errors[index] = '';
-      }
-    },
-    //also this
-    saveSettings() {
-      // Example: save to localStorage
-      localStorage.setItem('ipAddresses', JSON.stringify(this.inputs.map(input => input.value)));
-      alert('Settings saved!');
-    }
-  },
-  mounted() {
-    // Load settings from localStorage if available
-    const savedIPs = localStorage.getItem('ipAddresses');
-    if (savedIPs) {
-      this.inputs = JSON.parse(savedIPs).map(value => ({ value }));
-    }
+const loggedIn = computed(() => status.value === 'authenticated')
+
+async function handleSignIn() {
+  await signIn('github')
+}
+
+async function handleSignOut() {
+  await signOut()
+}
+
+// Watch for changes in authentication status to redirect after login
+watchEffect(() => {
+  if (loggedIn.value) {
+    router.push('/settings')  // Replace '/next-page' with your desired route
   }
-};
+})
 </script>
 
+<template>
+  <div class="auth-container">
+    <button v-if="loggedIn" @click="handleSignOut" class="auth-button">
+      Sign Out
+    </button>
+    <button v-else @click="handleSignIn" class="auth-button">
+      Login with GitHub
+    </button>
+  </div>
+</template>
+
 <style scoped>
-.container {
-  background-image: url('~/public/images/bg.png');
-  background-size: cover;
-  background-position: center;
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  background-repeat: no-repeat; 
-  background-attachment: fixed;
-  position: relative;
-}
-.settings {
-  max-width: 400px;
-  margin: 0 auto;
+  background-color: #e0f7fa;
 }
 
-.input-group {
-  margin-bottom: 1rem;
+.auth-button {
+  background-color: #007bb5;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin: 0 0.5rem;
 }
 
-.error {
-  color: red;
+.auth-button:hover {
+  background-color: #005f87;
 }
 </style>

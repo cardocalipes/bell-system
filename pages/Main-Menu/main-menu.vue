@@ -19,8 +19,8 @@
                 <div class="menu-label"><NuxtLink to = "/Main-Menu/Custom-Schedule/custom-sched">Custom Schedule</NuxtLink></div>
             </div>
             <div class="menu-item" onclick="logOut()">
-                <span class="menu-icon"><NuxtLink to = "/">&#x1F6AA;</NuxtLink></span>
-                <div class="menu-label"><NuxtLink to = "/">Log Out</NuxtLink></div>
+                <span class="menu-icon"><NuxtLink to = "/signout">&#x1F6AA;</NuxtLink></span>
+                <div class="menu-label"><NuxtLink to = "/signout">Log Out</NuxtLink></div>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
             window.location.href = "logout.html";
         }
 
-        import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { DateTime } from 'luxon';
 import dayjs from "dayjs";
 
