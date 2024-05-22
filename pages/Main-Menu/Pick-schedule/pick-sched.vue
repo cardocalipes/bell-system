@@ -111,7 +111,6 @@ function applySchedule(schedule) {
             font-weight: bold;
             font-size: 25px;
             color: #07053a;
-            background-color: #b7d9ff;
         }
         .time {
             position: absolute;
@@ -120,7 +119,6 @@ function applySchedule(schedule) {
           color: #000000;
           font-size: 50px;
           font: caption;
-          background-color: #b7d9ff;
           padding: 5px 50px 0px 1303px;
         }
 </style>

@@ -1,4 +1,5 @@
 <template>
+  <div class="container">
     <body class="container">
         <div class="tbl">
         <div class="time">
@@ -25,6 +26,7 @@
         <div v-if="error">{{ error }}</div>
         </div>
     </body>
+    </div>  
   </template>
   
   <script setup>
@@ -66,10 +68,20 @@
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+    width: 100%;
   }
   .history-table th {
     background-color: #04AA6D;
     color: white;
   }
+  .time {
+            position: absolute;
+          top: 8px;
+          right: 8px;
+          color: #000000;
+          font-size: 50px;
+          font: caption;
+          padding: 5px 50px 0px 1303px;
+        }
   </style>
   

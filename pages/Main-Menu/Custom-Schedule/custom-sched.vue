@@ -65,7 +65,6 @@ body {
             font-weight: bold;
             font-size: 25px;
             color: #07053a;
-            background-color: #b7d9ff;
         }
         .back-button {
             position: absolute;
@@ -125,7 +124,6 @@ body {
           font-size: 20px;
           font-weight: bold;
           font: caption;
-          background-color: #b7d9ff;
           padding: 5px 50px 0px 1303px;
         }
 </style>
